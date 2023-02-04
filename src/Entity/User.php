@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -20,13 +21,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = ["ROLE_USER"];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $communication = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $resume = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $aPayer = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagePayement = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateCreation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?Axe $axe = null;
 
     public function getId(): ?int
     {
@@ -115,5 +140,101 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getCommunication(): ?string
+    {
+        return $this->communication;
+    }
+
+    public function setCommunication(?string $communication): self
+    {
+        $this->communication = $communication;
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?string $resume): self
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function isAPayer(): ?bool
+    {
+        return $this->aPayer;
+    }
+
+    public function setAPayer(?bool $aPayer): self
+    {
+        $this->aPayer = $aPayer;
+
+        return $this;
+    }
+
+    public function getImagePayement(): ?string
+    {
+        return $this->imagePayement;
+    }
+
+    public function setImagePayement(?string $imagePayement): self
+    {
+        $this->imagePayement = $imagePayement;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    public function getAxe(): ?Axe
+    {
+        return $this->axe;
+    }
+
+    public function setAxe(?Axe $axe): self
+    {
+        $this->axe = $axe;
+
+        return $this;
     }
 }
