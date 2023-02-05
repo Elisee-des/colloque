@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionController extends AbstractController
 {
-    #[Route('/admin/inscription', name: 'app_admin_inscription')]
+    #[Route('/inscription', name: 'app_admin_inscription')]
     public function index(Request $request, EntityManagerInterface $em, UploaderService $uploaderService): Response
     {
         $user = new User();
