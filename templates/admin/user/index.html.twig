@@ -13,7 +13,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prenom</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Detail</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,11 +23,12 @@
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
                     <td>{{ user.dateCreation|date("m-d-Y") }}</td>
-                    <td></td>
+                    <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" title="Clique pour voir les detail de cet inscript" class="btn btn-outline-primary btn-sm">Detail</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
               </table>
+              
     </div>
 
 {% endblock %}

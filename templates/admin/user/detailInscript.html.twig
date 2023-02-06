@@ -1,0 +1,29 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Liste des inscripts{% endblock %}
+
+{% block body %}
+
+    
+            <div class="container">
+              <h5 class="card-title">Plus de detail sur {{ user.prenom }} {{ user.nom }}</h5>
+
+              <!-- List group With Icons -->
+            <div class="card p-3">
+              <ul class="list-group">
+                <li class="list-group-item"><i class="bi bi-bookmark-plus-fill me-1 text-primary"></i> Nom: {{ user.nom }}</li>
+                <li class="list-group-item"><i class="bi bi-bookmarks-fill me-1 text-primary"></i> Prenom: {{ user.prenom }}</li>
+                <li class="list-group-item"><i class="bi bi-envelope-fill me-1 text-primary"></i> Email: {{ user.email }}</li>
+                <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Contact: {{ user.numero }}</li>
+                <li class="list-group-item"><i class="bi bi-diagram-2-fill me-1 text-primary"></i> Axe: {{ user.axe.nom }}</li>
+                <li class="list-group-item"><i class="bi bi-gender-trans me-1 text-primary"></i> Communication: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
+                <li class="list-group-item"><i class="bi bi-card-list me-1 text-primary"></i> Resumer: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
+                <li class="list-group-item"><i class="bi bi-image me-1 text-primary"></i> Image du payement: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
+                <li class="list-group-item"><i class="bi bi-speedometer me-1 text-primary"></i> Date d'inscription: {{ user.dateCreation|date("m-d-Y") }}</li>
+              </ul><!-- End List group With Icons -->
+
+            </div>
+            </div>
+            </div>
+          
+{% endblock %}
