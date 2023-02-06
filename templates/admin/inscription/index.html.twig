@@ -62,65 +62,9 @@
                     <h5 class="card-title text-center pb-0 fs-4">Inscription</h5>
                     <p class="text-center small">Entrer vos informations</p>
                   </div>
-
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="nom" class="form-label">Votre nom</label>
-                      <input type="text" name="nom" class="form-control" id="nom" required>
-                      <div class="invalid-feedback">Veuillez entre votre nom svp</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="prenom" class="form-label">Votre prenom</label>
-                      <input type="text" name="prenom" class="form-control" id="prenom" required>
-                      <div class="invalid-feedback">Veuillez entre votre prenom svp</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="email" class="form-label">Votre email</label>
-                      <input type="email" name="email" class="form-control" id="email" required>
-                      <div class="invalid-feedback">Veuillez entre votre email svp</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="motdepasse" class="form-label">Votre mot de passe</label>
-                      <input type="password" name="password" class="form-control" id="motdepasse" required>
-                      <div class="invalid-feedback">Veuillez entre votre mot de passe svp</div>
-                    </div>
-
-                  <div class="col-sm-12">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Choisir l'axe dans lequel vous intervenez</option>
-                      <option value="1">Axe 1 : Savoirs endogènes, préservation de la biodiversité et gestion durable des terres : restauration, 
-                      conservation, protection et valorisation…</option>
-                      <option value="2">Axe 2 : Savoirs endogènespour comprendre les mathématiques, la chimie et la physique.</option>
-                      <option value="3">Axe 3 : Langues nationales et intégration des savoirs locaux dans le système éducatif.</option>
-                      <option value="3">Axe 4 : Savoirs endogènes, croyances et spiritualités </option>
-                      <option value="3">Axe 5 : Savoirs endogène, pharmacopée et médecine</option>
-                      <option value="3">Axe 6 : Savoirs endogènes et développement socioéconomique.</option>
-                      <option value="3">Axe 7 : Savoirs endogènes, sciences juridiques et politiques.</option>
-                      <option value="3">Axe 8 : Savoirs endogènes dans le domaine des arts et lettres</option>
-                      <option value="3">Axe 9 : Aucun</option>
-                    </select>
-                  </div>
-
-                  <div class="col-12">
-                      <label for="communicatio" class="form-label">Entrer votre communication</label>
-                      <input type="file" name="communication" class="form-control" id="communication" required>
-                      {# <div class="invalid-feedback">Veuillez entre votre mot de passe svp</div> #}
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Votre le resuler de votre communication</label>
-                      <input type="file" name="resumer" class="form-control" id="resumer" required>
-                      {# <div class="invalid-feedback">Veuillez entre votre mot de passe svp</div> #}
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Image de votre payement</label>
-                      <input type="file" name="imagePayement" class="form-control" id="payement" required>
-                      {# <div class="invalid-feedback">Veuillez entre votre mot de passe svp</div> #}
-                    </div>
+                  <div class="row g-3 needs-validation" novalidate>
+  
+                    {{ form(formulaireInscription) }}
                   
                     <div class="col-12">
                     <div class="row mb-3">
@@ -130,18 +74,20 @@
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                        <input class="form-check-input" name="terms" type="checkbox" value="1" id="acceptTerms" required>
                         <label class="form-check-label" for="acceptTerms">J'accept les termes et conditions <a href="#">terms and conditions</a></label>
                         <div class="invalid-feedback">Cette case est obligatoire</div>
                       </div>
                     </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Inscription</button>
+                    {# <div class="col-12">
+                      <button class="btn btn-primary w-100" name="inscription" type="submit" value="">
+                      Inscription
+                    </button> #}
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Jai deja un compte <a href="pages-login.html">Se connecter</a></p>
+                      <p class="small mb-0">J'ai deja un compte <a href="pages-login.html">Se connecter</a></p>
                     </div>
-                  </form>
+                  </div>
 
                 </div>
               </div>

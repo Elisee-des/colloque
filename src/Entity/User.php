@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -52,6 +53,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Axe $axe = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $terms = null;
+
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -234,6 +243,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAxe(?Axe $axe): self
     {
         $this->axe = $axe;
+
+        return $this;
+    }
+
+    public function isTerms(): ?bool
+    {
+        return $this->terms;
+    }
+
+    public function setTerms(?bool $terms): self
+    {
+        $this->terms = $terms;
 
         return $this;
     }

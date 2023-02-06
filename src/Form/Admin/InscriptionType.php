@@ -22,66 +22,107 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nom', TextType::class)
-        ->add('prenom', TextType::class)
-            ->add('email', EmailType::class)
+        ->add('nom', TextType::class, [
+                "attr" => [
+                    "class" => "form-control mb-3"
+                ]
+        ])
+        ->add('prenom', TextType::class, [
+                "attr" => [
+                    "class" => "form-control mb-3"
+                ]
+        ])
+            ->add('email', EmailType::class, [
+                "attr" => [
+                    "class" => "form-control mb-3"
+                ]
+            ])
             ->add('password', RepeatedType::class, [
-                "mapped" => true,
                 "type" => PasswordType::class,
                 "first_options" => [
                     "label" => "Nouveau mot de passe",
-                    'attr' => ['autocomplete' => 'new-password']
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        "class" => "form-control mb-3"
+                    ]
                 ],
                 "second_options" => [
                     "label" => "Repeter le mot de passe ",
-                    'attr' => ['autocomplete' => 'new-password']
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        "class" => "form-control mb-3"
+                    ]
                 ],
                 "invalid_message" => "Mot de passe non identique",
-                "constraints" => [
-                    new NotBlank()
-                ]
             ])
             ->add('axe', EntityType::class, [
+                "attr" => [
+                    "class" => "form-control mb-3"
+                ],
                 "class" => Axe::class,
-                "label" => "Choisissez votre axe"
+                "label" => "Choisissez votre axe",
+                "choice_label" => "nom",
             ])
-            ->add('communication', FileType::class, [
+            ->add('communicationFile', FileType::class, [
+                "mapped" => false,
                 "label"=> "Votre communication",
+                "attr" => [
+                    "class" => "form-control"
+                ],
                 "constraints" => [
                     new File([
                         "maxSize" => "2M",
                         "mimeTypes" =>[
-                            "image/jpeg",
-                            "image/png"
+                            "application/pdf",
+                            "application/msword",
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            "application/vnd.ms-word.document.macroEnabled.12"
                         ]
                     ])
                 ]
             ])
-            ->add('resume', FileType::class, [
+            ->add('resumeFile', FileType::class, [
+                "mapped" => false,
                 "label"=> "Votre resumer de communication",
+                "attr" => [
+                    "class" => "form-control"
+                ],
                 "constraints" => [
                     new File([
                         "maxSize" => "2M",
                         "mimeTypes" =>[
-                            "image/jpeg",
-                            "image/png"
+                            "application/pdf",
+                            "application/msword",
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            "application/vnd.ms-word.document.macroEnabled.12"
                         ]
                     ])
                 ]
             ])
-            ->add('imagePayement', FileType::class, [
+            ->add('imagePayementFile', FileType::class, [
+                "mapped" => false,
                 "label"=> "Entre une capture d'ecran de votre payement",
+                "attr" => [
+                    "class" => "form-control"
+                ],
                 "constraints" => [
                     new File([
                         "maxSize" => "2M",
                         "mimeTypes" =>[
                             "image/jpeg",
-                            "image/png"
+                            "image/png",
+                            "image/bmp",
+                            "image/pjpeg",
+                            "image/x-jps"
                         ]
                     ])
                 ]
             ])
-            ->add('Inscription', SubmitType::class)
+            ->add('Inscription', SubmitType::class, [
+                "attr" => [
+                    "class" => "col-12 btn btn-primary w-100"
+                ]
+            ])
         ;
     }
 
