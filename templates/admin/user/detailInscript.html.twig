@@ -12,25 +12,24 @@
               <h5  class="card-title">Plus de detail sur {{ user.prenom }} {{ user.nom }}</h5>
             </div>
 
-            {# <div class="col-lg-6">
-              <h5  class="card-title float-right"><a href="" class="btn btn-outline-dark btn-sm ">Editer</a></h5>
-              
-            </div> #}
             </div>
             </div>
 
               <!-- List group With Icons -->
-            <div class="card p-3">
+            <div class="card p-4">
               <ul class="list-group">
                 <li class="list-group-item"><i class="bi bi-bookmark-plus-fill me-1 text-primary"></i> Nom: {{ user.nom }}</li>
                 <li class="list-group-item"><i class="bi bi-bookmarks-fill me-1 text-primary"></i> Prenom: {{ user.prenom }}</li>
                 <li class="list-group-item"><i class="bi bi-envelope-fill me-1 text-primary"></i> Email: {{ user.email }}</li>
                 <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Contact: {{ user.contact }}</li>
-                <li class="list-group-item"><i class="bi bi-diagram-2-fill me-1 text-primary"></i> Axe: {{ user.axe.nom }}</li>
+                <li class="list-group-item"><i class="bi bi-diagram-2-fill me-1 text-primary"></i>{{ user.axe.nom }}</li>
                 <li class="list-group-item"><i class="bi bi-gender-trans me-1 text-primary"></i> Communication: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
                 <li class="list-group-item"><i class="bi bi-card-list me-1 text-primary"></i> Resumer: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
                 <li class="list-group-item"><i class="bi bi-image me-1 text-primary"></i> Image du payement: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
+                <li class="list-group-item"><i class="bi bi-diagram-2-fill me-1 text-primary"></i> Etat de la candidature :</li>
                 <li class="list-group-item"><i class="bi bi-speedometer me-1 text-primary"></i> Date d'inscription: {{ user.dateCreation|date("m-d-Y") }}</li>
+                <li class="list-group-item"><i class="bi bi-bounding-box me-1 text-primary"></i> Edition du profil: <a href="{{ path("admin_user_edition", {"id": user.id}) }}" title="Cliquez ici pour modifier les information de cette inscription" class="btn btn-outline-dark btn-sm">Editer</a></li>
+                <li class="list-group-item"><i class="bi bi-bounding-box me-1 text-primary"></i> Editer du mot de passe l'utilisateur: <a href="{{ path("admin_user_edition_password", {"id": user.id}) }}" title="Cliquez ici pour modifier le mot de passe de cet utilsatuer" class="btn btn-outline-dark btn-sm">Editer</a></li>
               </ul><!-- End List group With Icons -->
 
             </div>
