@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $terms = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numero = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -255,6 +258,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTerms(?bool $terms): self
     {
         $this->terms = $terms;
+
+        return $this;
+    }
+
+    public function getNumero(): ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(?int $numero): self
+    {
+        $this->numero = $numero;
 
         return $this;
     }

@@ -64,6 +64,7 @@ class InscriptionType extends AbstractType
                 "choice_label" => "nom",
             ])
             ->add('communicationFile', FileType::class, [
+                "required" => false,
                 "mapped" => false,
                 "label"=> "Votre communication",
                 "attr" => [
@@ -82,6 +83,7 @@ class InscriptionType extends AbstractType
                 ]
             ])
             ->add('resumeFile', FileType::class, [
+                "required" => false,
                 "mapped" => false,
                 "label"=> "Votre resumer de communication",
                 "attr" => [
@@ -100,6 +102,7 @@ class InscriptionType extends AbstractType
                 ]
             ])
             ->add('imagePayementFile', FileType::class, [
+                "required" => false,
                 "mapped" => false,
                 "label"=> "Entre une capture d'ecran de votre payement",
                 "attr" => [

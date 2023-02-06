@@ -1,0 +1,33 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Liste des inscripts{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Liste de tout les inscripts sur le site</h2>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <th scope="row">{{ user.numero }}</th>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.dateCreation|date("m-d-Y") }}</td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+    </div>
+
+{% endblock %}
