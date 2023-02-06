@@ -6,7 +6,18 @@
 
     
             <div class="container">
-              <h5 class="card-title">Plus de detail sur {{ user.prenom }} {{ user.nom }}</h5>
+            <div class="content">
+            <div class="row">
+            <div class="col-lg-6">
+              <h5  class="card-title">Plus de detail sur {{ user.prenom }} {{ user.nom }}</h5>
+            </div>
+
+            {# <div class="col-lg-6">
+              <h5  class="card-title float-right"><a href="" class="btn btn-outline-dark btn-sm ">Editer</a></h5>
+              
+            </div> #}
+            </div>
+            </div>
 
               <!-- List group With Icons -->
             <div class="card p-3">
@@ -14,7 +25,7 @@
                 <li class="list-group-item"><i class="bi bi-bookmark-plus-fill me-1 text-primary"></i> Nom: {{ user.nom }}</li>
                 <li class="list-group-item"><i class="bi bi-bookmarks-fill me-1 text-primary"></i> Prenom: {{ user.prenom }}</li>
                 <li class="list-group-item"><i class="bi bi-envelope-fill me-1 text-primary"></i> Email: {{ user.email }}</li>
-                <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Contact: {{ user.numero }}</li>
+                <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Contact: {{ user.contact }}</li>
                 <li class="list-group-item"><i class="bi bi-diagram-2-fill me-1 text-primary"></i> Axe: {{ user.axe.nom }}</li>
                 <li class="list-group-item"><i class="bi bi-gender-trans me-1 text-primary"></i> Communication: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>
                 <li class="list-group-item"><i class="bi bi-card-list me-1 text-primary"></i> Resumer: <a href="" class="btn btn-outline-danger btn-sm">Telecharger</a></li>

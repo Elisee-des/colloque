@@ -50,6 +50,9 @@
             "./config/packages/fos_ckeditor.yaml"
         ]
     },
+    "nzo/file-downloader-bundle": {
+        "version": "v4.2.0"
+    },
     "phpunit/phpunit": {
         "version": "9.5",
         "recipe": {

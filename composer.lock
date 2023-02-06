@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0592d7785ed1886c5a574ca6965c142",
+    "content-hash": "0a73bb5adc398657846925b5374b5e5b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1784,6 +1784,62 @@
                 }
             ],
             "time": "2022-07-24T11:55:47+00:00"
+        },
+        {
+            "name": "nzo/file-downloader-bundle",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nayzo/NzoFileDownloaderBundle.git",
+                "reference": "c370c25a4f4c01d9dfc8f7c7100a251ab61aa935"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nayzo/NzoFileDownloaderBundle/zipball/c370c25a4f4c01d9dfc8f7c7100a251ab61aa935",
+                "reference": "c370c25a4f4c01d9dfc8f7c7100a251ab61aa935",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony/framework-bundle": "^4.4|^5.0|^6.0",
+                "symfony/mime": "^4.4|^5.0|^6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Nzo\\FileDownloaderBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ala Eddine Khefifi",
+                    "email": "alakhefifi@gmail.com"
+                }
+            ],
+            "description": "The NzoFileDownloaderBundle is a Symfony Bundle used to Download all types of files from servers and Web applications safely and with ease. You can also read/show the file content in the Web Browser.",
+            "keywords": [
+                "browser",
+                "bundle",
+                "download",
+                "downloader",
+                "file",
+                "read",
+                "show",
+                "symfony",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/nayzo/NzoFileDownloaderBundle/issues",
+                "source": "https://github.com/nayzo/NzoFileDownloaderBundle/tree/v4.2.0"
+            },
+            "time": "2021-12-06T08:22:16+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

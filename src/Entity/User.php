@@ -57,8 +57,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $terms = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numero = null;
+
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $numero = null;
+    private ?string $contact = null;
 
     public function __construct()
     {
@@ -262,14 +265,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getNumero(): ?string
+    public function getNumero(): ?int
     {
         return $this->numero;
     }
 
-    public function setNumero(?string $numero): self
+    public function setNumero(?int $numero): self
     {
         $this->numero = $numero;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }
