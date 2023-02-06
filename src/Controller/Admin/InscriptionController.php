@@ -36,15 +36,34 @@ class InscriptionController extends AbstractController
             $communication = $form->get("communicationFile")->getData();
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
-            $nouveauNom1 = $uploaderService->uploader($communication);
-            $nouveauNom2 = $uploaderService->uploader($resumer);
-            $nouveauNom3 = $uploaderService->uploader($imagePayement);
-            
+
+            if($communication == NULL)
+            {
+                $user->setCommunication($communication);
+            }
+
+            if($resumer == NULL)
+            {
+                $user->setResume($resumer);
+            }
+
+            if($imagePayement == NULL)
+            {
+                $user->setImagePayement($imagePayement);
+            }
+
+            else {
+                $nouveauNom1 = $uploaderService->uploader($communication);
+                $nouveauNom2 = $uploaderService->uploader($resumer);
+                $nouveauNom3 = $uploaderService->uploader($imagePayement);
+
+                $user->setCommunication($nouveauNom1)
+                ->setResume($nouveauNom2)
+                ->setImagePayement($nouveauNom3);
+            }
+
             $user
             ->setPassword($password)
-            ->setCommunication($nouveauNom1)
-            ->setResume($nouveauNom2)
-            ->setImagePayement($nouveauNom3)
             ->setNumero($numeroUser)
             ->setTerms(true)
             ->setAPayer(false);
@@ -57,7 +76,7 @@ class InscriptionController extends AbstractController
                 'Vous avez reussi votre inscription'
             );
             
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('inscription_success');
 
         }
 
@@ -65,6 +84,16 @@ class InscriptionController extends AbstractController
             'formulaireInscription' => $form->createView(),
         ]);
 
+    }
+
+    #[Route('/inscription/success', name: 'inscription_success')]
+    public function succes(): Response
+    {
+        $user = $this->getUser();
+
+        return $this->render('admin/inscription/success.html.twig', [
+            'user' => $user,
+        ]);
     }
 
 }
