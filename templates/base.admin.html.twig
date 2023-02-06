@@ -126,14 +126,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link {{ active(["admin_dashboard"]) }}" href="{{path("admin_dashboard")}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="{{path("admin_liste_inscription")}}">
+        <a class="nav-link {{ active(["admin_liste_inscription", "admin_user_detail", "admin_user_edition_password", "admin_user_edition"]) }}" href="{{path("admin_liste_inscription")}}">
           <i class="bi bi-grid"></i>
           <span>Inscription</span>
         </a>
