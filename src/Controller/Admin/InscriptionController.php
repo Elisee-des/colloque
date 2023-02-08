@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionController extends AbstractController
 {
-    #[Route('/inscription', name: 'admin_inscription')]
+    #[Route('/inscription', name: 'inscription')]
     public function index(Request $request, EntityManagerInterface $em,
     UploaderService $uploaderService, UserPasswordHasherInterface $passwordhasher, UserRepository $userRepository): Response
     {

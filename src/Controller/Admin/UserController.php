@@ -13,11 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Nzo\FileDownloaderBundle\FileDownloader\FileDownloader;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Path;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 #[Route('/admin', name: 'admin_')]
 class UserController extends AbstractController
 {
+    private $fichierATelecharger;
+
+    public function __construct(FileDownloader $fichierATelecharger)
+    {
+        $this->fichierATelecharger = $fichierATelecharger;
+        
+    }
+
     #[Route('/user/liste/inscription', name: 'liste_inscription')]
     public function index(UserRepository $userRepository): Response
     {
@@ -94,5 +106,26 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'user' => $user
         ]);
+    }
+
+    #[Route('/telechargement/{communication}', name: 'telecharger')]
+    public function telechargementFichier($communication, Request $request): Response
+    {
+        
+    $filesystem = new Filesystem();
+
+    try {
+        $filesystem->mkdir(
+            Path::normalize(sys_get_temp_dir().'/'.random_int(0, 1000)),
+        );
+    } catch (IOExceptionInterface $exception) {
+        echo "An error occurred while creating your directory at ".$exception->getPath();
+    }
+
+    // dd($filesystem->ch);
+
+    return $this->render('admin/user/editionPassword.html.twig', [
+    ]);
+
     }
 }

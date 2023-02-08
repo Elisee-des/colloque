@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>cConnexion</title>
+  <title>Connexion</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -64,40 +64,56 @@
                   </div>
                   <div class="row g-3 needs-validation" novalidate>
   
+                    <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            Vous etes déja connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se deconnecter</a>
+                        </div>
+                    {% endif %}
+
+                    {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1> #}
+                    <label for="inputEmail">Votre Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                     
+                    <label for="inputPassword">Votre mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token"
+                          value="{{ csrf_token('authenticate') }}"
+                    >
+                <br>
+                    <button class="btn btn-lg btn-primary" type="submit">
+                       Connexion
+                    </button>
+                </form>
                   
                     <div class="col-12">
                     <div class="row mb-3">
                   {# <label class="col-sm-2 col-form-label">Select</label> #}
                 </div>
-                </div>
-
                     <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="1" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">J'accept les termes et conditions <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">Cette case est obligatoire</div>
-                      </div>
+                      <p class="small center mb-0">Je n'ai pas de compte <a href="{{ path("inscription") }}">Inscription</a></p>
                     </div>
+                </div>
                     {# <div class="col-12">
                       <button class="btn btn-primary w-100" name="inscription" type="submit" value="">
                       Inscription
                     </button> #}
                     </div>
-                    <div class="col-12">
-                      <p class="small mb-0">J'ai deja un compte <a href="pages-login.html">Se connecter</a></p>
-                    </div>
                   </div>
 
                 </div>
-              </div>
-
               <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
                 Besoin d'aide ? <a href="https://bootstrapmade.com/">Nous contacter</a>
+              </div>
               </div>
 
             </div>
@@ -128,43 +144,3 @@
 </body>
 
 </html>
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
