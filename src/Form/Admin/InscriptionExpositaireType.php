@@ -6,6 +6,7 @@ use App\Entity\Expositaire;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +31,12 @@ class InscriptionExpositaireType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 "label"=>"Prenom du representant",
+                "attr"=>[
+                    "placeholder" => "Obligatoire*"
+                ]
+            ])
+            ->add('contact', IntegerType::class, [
+                "label"=>"Votre numero de telephone",
                 "attr"=>[
                     "placeholder" => "Obligatoire*"
                 ]

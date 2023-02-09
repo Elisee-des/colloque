@@ -1,10 +1,10 @@
 {% extends 'base.admin.html.twig' %}
 
-{% block title %}Liste des inscripts pour une exposition{% endblock %}
+{% block title %}Liste des inscrits pour une exposition{% endblock %}
 
 {% block body %}
     <div class="card-body">
-              <h2 class="card-title">Liste des inscripts pour une exposition</h2>
+              <h2 class="card-title">Liste des inscrits pour une exposition</h2>
               <!-- Bordered Table -->
               <table class="table table-bordered">
                 <thead>
@@ -17,13 +17,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for expositaire in expositaires %}
+                  {% for exposant in exposants %}
                   <tr>
-                    <th scope="row">{{ expositaire.numero }}</th>
-                    <td>{{ expositaire.nom }}</td>
-                    <td>{{ expositaire.prenom }}</td>
-                    <td>{{ expositaire.dateCreation|date("m-d-Y") }}</td>
-                    <td><a href="{{ path("admin_user_detail", {"id": expositaire.id}) }}" title="Clique pour voir les detail de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
+                    <th scope="row">{{ exposant.numero }}</th>
+                    <td>{{ exposant.nom }}</td>
+                    <td>{{ exposant.prenom }}</td>
+                    <td>{{ exposant.dateCreation|date("m-d-Y") }}</td>
+                    <td><a href="{{ path("admin_exposant_detail", {"id": exposant.id}) }}" title="Clique pour voir les detail de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>

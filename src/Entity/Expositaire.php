@@ -38,6 +38,9 @@ class Expositaire
     #[ORM\Column(nullable: true)]
     private ?int $numero = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $contact = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -140,6 +143,18 @@ class Expositaire
     public function setNumero(?int $numero): self
     {
         $this->numero = $numero;
+
+        return $this;
+    }
+
+    public function getContact(): ?int
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?int $contact): self
+    {
+        $this->contact = $contact;
 
         return $this;
     }
