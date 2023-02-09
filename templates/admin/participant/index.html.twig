@@ -35,7 +35,7 @@
                     <td>{{ participant.nom }}</td>
                     <td>{{ participant.prenom }}</td>
                     <td>{{ participant.dateCreation|date("m-d-Y") }}</td>
-                    <td><a href="{{ path("admin_user_detail", {"id": participant.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
+                    <td><a href="{{ path("admin_participant_detail", {"id": participant.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>

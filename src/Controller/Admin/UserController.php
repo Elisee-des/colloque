@@ -49,7 +49,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/edition/{id}', name: 'user_edition')]
+    #[Route('/inscription/edition/{id}', name: 'user_edition')]
     public function edition(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordhasher): Response
     {
         $form = $this->createForm(editionCompteInscriptionType::class, $user);

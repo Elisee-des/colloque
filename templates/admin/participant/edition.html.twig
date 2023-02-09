@@ -1,34 +1,35 @@
 {% extends 'base.admin.html.twig' %}
 
-{% block title %}Editer le mot de passe de {{ user.prenom }} {{ user.nom }}{% endblock %}
+{% block title %}Editer l'inscription de {{ participant.prenom }} {{ participant.nom }}{% endblock %}
 
 {% block page %}
         <div class="pagetitle">
-      <h1>Inscription</h1>
+      <h1>Participants</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Liste</a></li>
-          <li class="breadcrumb-item active">Edition mot de passe</li>
+          <li class="breadcrumb-item active">Edition</li>
         </ol>
       </nav>
     </div>
 {% endblock %}
 
 {% block body %}
-
+    
  <div class="container">
             <div class="content">
             <div class="row">
             <div class="col-lg-6">
-              <h5  class="card-title">Modifier le mot de passe de {{ user.prenom }} {{ user.nom }}</h5>
+              <h5  class="card-title">Edition du profil de {{ participant.prenom }} {{ participant.nom }}</h5>
             </div>
 
             </div>
-            </div>
+            </div>              <!-- List group With Icons -->
 
             <div class="card p-4">
             <div class="container">
             <div class="row g-3 needs-validation" novalidate>
+
               {{ form(form) }}
             </div>
             </div>
