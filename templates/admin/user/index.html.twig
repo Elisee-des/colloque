@@ -2,6 +2,18 @@
 
 {% block title %}Liste des inscripts{% endblock %}
 
+{% block page %}
+        <div class="pagetitle">
+      <h1>Inscription</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Liste</a></li>
+          <li class="breadcrumb-item active"></li>
+        </ol>
+      </nav>
+    </div>
+{% endblock %}
+
 {% block body %}
     <div class="card-body">
               <h2 class="card-title">Liste de tout les inscripts sur le site</h2>
@@ -23,7 +35,7 @@
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
                     <td>{{ user.dateCreation|date("m-d-Y") }}</td>
-                    <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" title="Clique pour voir les detail de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
+                    <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>

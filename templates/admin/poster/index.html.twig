@@ -1,10 +1,10 @@
 {% extends 'base.admin.html.twig' %}
 
-{% block title %}Liste des inscrits pour une exposition{% endblock %}
+{% block title %}Liste de tout les inscript ayant deposé un RESUMER{% endblock %}
 
 {% block page %}
         <div class="pagetitle">
-      <h1>Les Exposants</h1>
+      <h1>Posters</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Liste</a></li>
@@ -16,7 +16,7 @@
 
 {% block body %}
     <div class="card-body">
-              <h2 class="card-title">Liste des inscrits pour une exposition</h2>
+              <h2 class="card-title">Liste de tout les inscript ayant deposé un RESUMER</h2>
               <!-- Bordered Table -->
               <table class="table table-bordered border-dark">
                 <thead>
@@ -29,13 +29,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for exposant in exposants %}
+                  {% for poster in posters %}
                   <tr>
-                    <th scope="row">{{ exposant.numero }}</th>
-                    <td>{{ exposant.nom }}</td>
-                    <td>{{ exposant.prenom }}</td>
-                    <td>{{ exposant.dateCreation|date("m-d-Y") }}</td>
-                    <td><a href="{{ path("admin_exposant_detail", {"id": exposant.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
+                    <th scope="row">{{ poster.numero }}</th>
+                    <td>{{ poster.nom }}</td>
+                    <td>{{ poster.prenom }}</td>
+                    <td>{{ poster.dateCreation|date("m-d-Y") }}</td>
+                    <td><a href="{{ path("admin_user_detail", {"id": poster.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>

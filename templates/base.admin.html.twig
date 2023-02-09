@@ -139,12 +139,20 @@
         </a>
       </li>
       
+      <li class="nav-item">
+        <a class="nav-link {{ active(["admin_poster", "admin_edition_exposant"]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_poster")}}">
+          <i class="bi bi-grid"></i>
+          <span>Poster</span>
+        </a>
+      </li>
+      <!-- End Dashboard Nav -->
             <li class="nav-item">
-        <a class="nav-link {{ active(["admin_liste_inscription_exposants", "admin_exposants_detail", "admin_edition_exposants"]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_liste_inscription_exposants")}}">
+        <a class="nav-link {{ active(["admin_liste_inscription_exposants", "admin_exposant_detail", "admin_edition_exposant"]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_liste_inscription_exposants")}}">
           <i class="bi bi-grid"></i>
           <span>Exposants</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+      
 
     </ul>
 
@@ -152,15 +160,10 @@
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+  {% block page %}
+    
+  {% endblock %}
+<!-- End Page Title -->
 
     <section class="section dashboard">
       <div class="row">

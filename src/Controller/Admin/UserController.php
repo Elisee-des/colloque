@@ -40,7 +40,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/liste/detail/inscript/{id}', name: 'user_detail')]
+    #[Route('/user/liste/detail/inscrit/{id}', name: 'user_detail')]
     public function detailUser(UserRepository $userRepository, User $user): Response
     {
 
