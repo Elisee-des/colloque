@@ -39,7 +39,7 @@ class Expositaire
     private ?int $numero = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $contact = null;
+    private ?string $contact = null;
 
     public function __construct()
     {
@@ -147,12 +147,12 @@ class Expositaire
         return $this;
     }
 
-    public function getContact(): ?int
+    public function getContact(): ?string
     {
         return $this->contact;
     }
 
-    public function setContact(?int $contact): self
+    public function setContact(?string $contact): self
     {
         $this->contact = $contact;
 

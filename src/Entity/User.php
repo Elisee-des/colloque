@@ -64,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $produits = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $contact = null;
+    private ?string $contact = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $numero = null;
@@ -294,12 +294,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getContact(): ?int
+    public function getContact(): ?string
     {
         return $this->contact;
     }
 
-    public function setContact(?int $contact): self
+    public function setContact(?string $contact): self
     {
         $this->contact = $contact;
 

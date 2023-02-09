@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Expositaire;
 use App\Entity\User;
+use App\Form\Admin\editionExposantType;
 use App\Repository\ExpositaireRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,29 +38,29 @@ class ExposantController extends AbstractController
     }
 
     #[Route('exposant/edition/{id}', name: 'edition_exposant')]
-    public function edition(User $user, Request $request, EntityManagerInterface $em): Response
+    public function edition(Expositaire $exposant, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(editionCompteInscriptionType::class, $user);
+        $form = $this->createForm(editionExposantType::class, $exposant);
 
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
             
-            $em->persist($user);
+            $em->persist($exposant);
             $em->flush();
 
             $this->addFlash(
                 'success',
-                'Vous avez modifier avec succes les informations de cet utilisateur'
+                'Vous avez modifier avec succes les informations de cet inscription'
             );
 
-            return $this->redirectToRoute('admin_user_detail', ["id"=> $user->getId()]);
+            return $this->redirectToRoute('admin_exposant_detail', ["id"=> $exposant->getId()]);
             
         }
 
-        return $this->render('admin/user/editionCompteInscription.html.twig', [
+        return $this->render('admin/exposant/edition.html.twig', [
             'form' => $form->createView(),
-            'user' => $user
+            'exposant' => $exposant
         ]);
     }
 

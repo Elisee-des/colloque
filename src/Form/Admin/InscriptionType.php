@@ -38,7 +38,7 @@ class InscriptionType extends AbstractType
                     "class" => "form-control mb-3"
                 ]
             ])
-            ->add('contact', NumberType::class, [
+            ->add('contact', TextType::class, [
                 "attr" => [
                     "class" => "form-control mb-3"
                 ]

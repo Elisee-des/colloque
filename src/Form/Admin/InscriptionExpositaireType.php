@@ -30,12 +30,12 @@ class InscriptionExpositaireType extends AbstractType
                 ]
             ])
             ->add('email', EmailType::class, [
-                "label"=>"Prenom du representant",
+                "label"=>"Email du representant",
                 "attr"=>[
                     "placeholder" => "Obligatoire*"
                 ]
             ])
-            ->add('contact', IntegerType::class, [
+            ->add('contact', TextType::class, [
                 "label"=>"Votre numero de telephone",
                 "attr"=>[
                     "placeholder" => "Obligatoire*"
