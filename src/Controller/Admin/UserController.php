@@ -30,7 +30,7 @@ class UserController extends AbstractController
         
     }
 
-    #[Route('/user/liste/inscription', name: 'liste_inscription')]
+    #[Route('/liste/inscriptions', name: 'liste_inscription')]
     public function index(UserRepository $userRepository): Response
     {
 
@@ -40,7 +40,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/liste/detail/inscrit/{id}', name: 'user_detail')]
+    #[Route('/liste/detail/inscrit/{id}', name: 'user_detail')]
     public function detailUser(UserRepository $userRepository, User $user): Response
     {
 
@@ -49,7 +49,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/edition/{id}', name: 'user_edition')]
+    #[Route('/edition/{id}', name: 'user_edition')]
     public function edition(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordhasher): Response
     {
         $form = $this->createForm(editionCompteInscriptionType::class, $user);
@@ -76,7 +76,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user/edition/motdepasse/{id}', name: 'user_edition_password')]
+    #[Route('/edition/motdepasse/{id}', name: 'user_edition_password')]
     public function editionPassword(User $user, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordhasher): Response
     {
         $form = $this->createForm(editionPasswordType::class, $user);

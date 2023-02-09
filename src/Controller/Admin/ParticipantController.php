@@ -8,23 +8,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin', name: 'admin_')]
-class PosterController extends AbstractController
+class ParticipantController extends AbstractController
 {
-    #[Route('/posters', name: 'poster')]
+    #[Route('/participants', name: 'participant')]
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
         foreach($users as $user)
         {
             $resumer = $user->getResume();
-            if($resumer != '')
+            if($resumer == '')
             {
-                $posters[] = $user;
+                $participants[] = $user;
             }
         }
 
-        return $this->render('admin/poster/index.html.twig', [
-            'posters' => $posters,
+        return $this->render('admin/participant/index.html.twig', [
+            'participants' => $participants,
         ]);
     }
 }
