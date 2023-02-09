@@ -66,6 +66,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $contact = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numero = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -299,6 +302,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setContact(?int $contact): self
     {
         $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getNumero(): ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(?int $numero): self
+    {
+        $this->numero = $numero;
 
         return $this;
     }

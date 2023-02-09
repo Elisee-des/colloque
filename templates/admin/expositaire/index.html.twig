@@ -1,0 +1,34 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Liste des inscripts pour une exposition{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Liste des inscripts pour une exposition</h2>
+              <!-- Bordered Table -->
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for expositaire in expositaires %}
+                  <tr>
+                    <th scope="row">{{ expositaire.numero }}</th>
+                    <td>{{ expositaire.nom }}</td>
+                    <td>{{ expositaire.prenom }}</td>
+                    <td>{{ expositaire.dateCreation|date("m-d-Y") }}</td>
+                    <td><a href="{{ path("admin_user_detail", {"id": expositaire.id}) }}" title="Clique pour voir les detail de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+    </div>
+
+{% endblock %}

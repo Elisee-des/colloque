@@ -35,6 +35,9 @@ class Expositaire
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCreation = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numero = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -125,6 +128,18 @@ class Expositaire
     public function setDateCreation(?\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    public function getNumero(): ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(?int $numero): self
+    {
+        $this->numero = $numero;
 
         return $this;
     }

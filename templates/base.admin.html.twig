@@ -133,9 +133,16 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ active(["admin_liste_inscription", "admin_user_detail", "admin_user_edition_password", "admin_user_edition"]) }}" href="{{path("admin_liste_inscription")}}">
+        <a class="nav-link {{ active(["admin_liste_inscription", "admin_user_detail", "admin_user_edition_password", "admin_user_edition"]) }}" title="Ouvire la liste des inscrits" href="{{path("admin_liste_inscription")}}">
           <i class="bi bi-grid"></i>
           <span>Inscription</span>
+        </a>
+      </li>
+      
+            <li class="nav-item">
+        <a class="nav-link {{ active(["admin_liste_inscription_expositaire", "admin_expositaire_detail", "admin_edition_expositaire"]) }}" title="Ouvire la liste des expositaires" href="{{path("admin_liste_inscription_expositaire")}}">
+          <i class="bi bi-grid"></i>
+          <span>Expositaire</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
