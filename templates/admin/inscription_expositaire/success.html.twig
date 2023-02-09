@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inscription Expositaire</title>
+  <title>Success Inscription</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,7 +48,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a href="#" class="logo d-flex align-items-center w-auto">
                   <img src="{{ asset("assets/img/logo.png") }}" alt="">
                   <span class="d-none d-lg-block">Colloque International</span>
                 </a>
@@ -56,40 +56,14 @@
 
               <div class="card mb-3">
 
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Inscription Expositaire</h5>
-                    <p class="text-center small">Entrer vos informations</p>
-                  </div>
-                  <div class="row g-3 needs-validation" novalidate>
-  
-                    {{ form(formulaireInscription) }}
-                  
-                    <div class="col-12">
-                    <div class="row mb-3">
-                  {# <label class="col-sm-2 col-form-label">Select</label> #}
-                </div>
-                    <div class="col-12">
-                    </div>
-                </div>
-                    {# <div class="col-12">
-                      <button class="btn btn-primary w-100" name="inscription" type="submit" value="">
-                      Inscription
-                    </button> #}
-                    </div>
-                  </div>
-
-                </div>
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Besoin d'aide ? <a href="https://bootstrapmade.com/">Nous contacter</a>
+                <div class="card-body p-3">
+              <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Message</h4>
+                <p>Vous avez été insript avec succes pour une exposition au colloque. Nous contacterons vous plutartd. Merci!!!</p>
+                <hr>
+                <p class="mb-0">Revenir à l'accueil <a href="{{ path("main_accueil") }}" class="btn btn-outline-primary btn-sm">Revenir</a>.</p>
               </div>
               </div>
-
 
             </div>
           </div>

@@ -16,15 +16,43 @@ class InscriptionExpositaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('structure', TextType::class)
+            ->add('nom', TextType::class,[
+                "label"=>"Nom du representant",
+                "attr"=>[
+                    "placeholder" => "Obligatoire*"
+                ]
+            ])
+            ->add('prenom', TextType::class, [
+                "label"=>"Prenom du representant",
+                "attr"=>[
+                    "placeholder" => "Obligatoire*"
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                "label"=>"Prenom du representant",
+                "attr"=>[
+                    "placeholder" => "Obligatoire*"
+                ]
+            ])
+            ->add('structure', TextType::class, [
+                "required" => false,
+                "label" => "Nom de la struture(association, entreprise,...)",
+                "attr"=>[
+                    "placeholder" => "Facultatif"
+                ]
+            ])
             ->add('emailStructure', EmailType::class, [
-                "label" => "Email de la structure(Association, entreprise...)"
+                "required" => false,
+                "label" => "Email de la structure(Association, entreprise...)",
+                "attr"=>[
+                    "placeholder" => "Facultatif"
+                ]
             ])
             ->add('produits', CKEditorType::class, [
-                "label" => "Les produits que vous souhaitez exposés"
+                "label" => "Les produits que vous souhaitez exposés",
+                "attr"=>[
+                    "placeholder" => "Obligatoire*"
+                ]
             ])
             ->add('Inscription', SubmitType::class, [
                 "attr" => [

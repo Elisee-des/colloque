@@ -24,33 +24,31 @@ class InscriptionExpositaireController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
-            $nom = $request->get("inscription_expositaire")["nom"];
-            $prenom = $request->get("inscription_expositaire")["prenom"];
-            $email = $request->get("inscription_expositaire")["email"];
-            $structure = $request->get("inscription_expositaire")["structure"];
-            $emailStructure = $request->get("inscription_expositaire")["emailStructure"];
-            $produits = $request->get("inscription_expositaire")["produits"];
+            
+            $em->persist($expositaire);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Vous êtés inscript avec success en tant que expositaire au colloque.'
+            );
+
+            return $this->redirectToRoute('success_inscription_expositaire');
         }
 
-        $expositaire->setNom($nom)
-            ->setPrenom($prenom)
-            ->setEmail($email)
-            ->setStructure($structure)
-            ->setEmailStructure($emailStructure)
-            ->setProduits($produits);
-
-        $em->persist($expositaire);
-        $em->flush();
-
-        $this->addFlash(
-           'success',
-           'Vous etes inscript en tant que expositaire au colloque.'
-        );
-
-        return $this->redirectToRoute('admin_dashboard');
 
         return $this->render('admin/inscription_expositaire/index.html.twig', [
             'formulaireInscription' => $form->createView()
+        ]);
+    }
+
+    #[Route('/inscription/expositaire/success', name: 'success_inscription_expositaire')]
+    public function success(): Response
+    {
+        // $user = $this->getUser();
+
+        return $this->render('admin/inscription_expositaire/success.html.twig', [
+            // 'user' => $user,
         ]);
     }
 }

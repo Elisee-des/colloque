@@ -32,6 +32,14 @@ class Expositaire
     #[ORM\Column(type: Types::TEXT)]
     private ?string $produits = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateCreation = null;
+
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,4 +116,17 @@ class Expositaire
 
         return $this;
     }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(?\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
 }

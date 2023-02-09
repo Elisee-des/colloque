@@ -64,7 +64,7 @@ class InscriptionController extends AbstractController
 
             $user
             ->setPassword($password)
-            ->setNumero($numeroUser)
+            ->setContact($numeroUser)
             ->setTerms(true)
             ->setAPayer(false);
             
@@ -95,5 +95,7 @@ class InscriptionController extends AbstractController
             'user' => $user,
         ]);
     }
+
+
 
 }
