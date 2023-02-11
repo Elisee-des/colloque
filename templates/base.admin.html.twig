@@ -139,23 +139,30 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link {{ active(["admin_poster", ""]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_poster")}}">
+        <a class="nav-link {{ active(["admin_poster", ""]) }}" title="Ouvire la liste des Posters" href="{{path("admin_poster")}}">
           <i class="bi bi-grid"></i>
           <span>Posters</span>
         </a>
       </li>
 
             <li class="nav-item">
-        <a class="nav-link {{ active(["admin_participant", "admin_participant_detail", "admin_edition_participant"]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_participant")}}">
+        <a class="nav-link {{ active(["admin_participant", "admin_participant_detail", "admin_edition_participant"]) }}" title="Ouvire la liste des Participants" href="{{path("admin_participant")}}">
           <i class="bi bi-grid"></i>
           <span>Participants</span>
         </a>
       </li>
       <!-- End Dashboard Nav -->
             <li class="nav-item">
-        <a class="nav-link {{ active(["admin_liste_inscription_exposants", "admin_exposant_detail", "admin_edition_exposant"]) }}" title="Ouvire la liste des Exposant" href="{{path("admin_liste_inscription_exposants")}}">
+        <a class="nav-link {{ active(["admin_liste_inscription_exposants", "admin_exposant_detail", "admin_edition_exposant"]) }}" title="Ouvire la liste des Exposants" href="{{path("admin_liste_inscription_exposants")}}">
           <i class="bi bi-grid"></i>
           <span>Exposants</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {{ active(["admin_contact"]) }}" title="Cliquez pour envoyez un message a un inscrit" href="{{path("admin_contact")}}">
+          <i class="bi bi-grid"></i>
+          <span>Contact</span>
         </a>
       </li>
       
