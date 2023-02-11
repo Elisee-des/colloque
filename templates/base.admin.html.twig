@@ -26,7 +26,6 @@
   <link href="{{ asset("asset/assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
   <link href="{{ asset("asset/assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
   <link href="{{ asset("asset/assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
-  <link rel="stylesheet" href="sweetalert2.min.css">
 
   <!-- Template Main CSS File -->
   <link href="{{ asset("asset/assets/css/style.css") }}" rel="stylesheet">
@@ -210,35 +209,6 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset("asset/assets/js/main.js") }}"></script>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-			<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-			<script>
-				var $window = $(window);
-var nav = $('.fixed-button');
-$window.scroll(function () {
-if ($window.scrollTop() >= 200) {
-nav.addClass('active');
-} else {
-nav.removeClass('active');
-}
-});
-
-$(document).ready(function () {
-
-$(".btn-actions").click(function (e) {
-e.preventDefault()
-$("#modale").modal("show")
-let url = $(this).attr("href")
-$('#modale-body').load(url);
-});
-})
-
-$(document).ready(function () {
-$('#example').DataTable();
-});{% for message in app.flashes("success") %}Swal.fire({"icon": "success", "title": "Success", "text":"{{ message }}", "timer": 20000}){% endfor %}
-			</script>
-
 </body>
 
 </html>

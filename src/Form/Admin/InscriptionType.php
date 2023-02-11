@@ -69,25 +69,6 @@ class InscriptionType extends AbstractType
                 "label" => "Choisissez votre axe",
                 "choice_label" => "nom",
             ])
-            ->add('communicationFile', FileType::class, [
-                "required" => false,
-                "mapped" => false,
-                "label"=> "Votre communication",
-                "attr" => [
-                    "class" => "form-control"
-                ],
-                "constraints" => [
-                    new File([
-                        "maxSize" => "2M",
-                        "mimeTypes" =>[
-                            "application/pdf",
-                            "application/msword",
-                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                            "application/vnd.ms-word.document.macroEnabled.12"
-                        ]
-                    ])
-                ]
-            ])
             ->add('resumeFile', FileType::class, [
                 "required" => false,
                 "mapped" => false,

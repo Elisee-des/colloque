@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Admin\InscriptionType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use App\Security\LoginAuthenticator;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,19 +14,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-class InscriptionController extends AbstractController
+class RegistrationController extends AbstractController
 {
     #[Route('/inscription', name: 'inscription')]
-    public function index(Request $request, EntityManagerInterface $em,
-    UploaderService $uploaderService, UserPasswordHasherInterface $passwordhasher, UserRepository $userRepository): Response
+    public function register(Request $request, UserPasswordHasherInterface $passwordhasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager, UploaderService $uploaderService, UserRepository $userRepository): Response
     {
         $user = new User();
         $form = $this->createForm(InscriptionType::class, $user);
-
-
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $users = $userRepository->findAll();
@@ -33,14 +34,8 @@ class InscriptionController extends AbstractController
 
             $passwordClaire = $request->get("inscription")["password"]["first"];
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
-            $communication = $form->get("communicationFile")->getData();
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
-
-            if($communication == NULL)
-            {
-                $user->setCommunication($communication);
-            }
 
             if($resumer == NULL)
             {
@@ -53,49 +48,38 @@ class InscriptionController extends AbstractController
             }
 
             else {
-                $nouveauNom1 = $uploaderService->uploader($communication);
                 $nouveauNom2 = $uploaderService->uploader($resumer);
                 $nouveauNom3 = $uploaderService->uploader($imagePayement);
 
-                $user->setCommunication($nouveauNom1)
+                $user
                 ->setResume($nouveauNom2)
                 ->setImagePayement($nouveauNom3);
             }
 
-            $user
-            ->setPassword($password)
+            $user->setPassword($password)
             ->setContact($numeroUser)
             ->setTerms(true)
             ->setAPayer(false);
-            
-            $em->persist($user);
-            $em->flush();
-            
+            // encode the plain password
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
             $this->addFlash(
                 'success',
                 'Vous avez reussi votre inscription'
             );
-            
-            return $this->redirectToRoute('inscription_success');
+            // do anything else you need here, like send an email
 
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
         }
 
         return $this->render('admin/inscription/index.html.twig', [
             'formulaireInscription' => $form->createView(),
         ]);
-
     }
-
-    #[Route('/inscription/success', name: 'inscription_success')]
-    public function succes(): Response
-    {
-        $user = $this->getUser();
-
-        return $this->render('admin/inscription/success.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-
-
 }
