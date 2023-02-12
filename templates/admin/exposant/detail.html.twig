@@ -36,6 +36,7 @@
                 <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Contact: {{ exposant.contact }}</li>
                 <li class="list-group-item"><i class="bi bi-speedometer me-1 text-primary"></i> Date d'inscription: {{ exposant.dateCreation|date("m-d-Y") }}</li>
                 <li class="list-group-item"><i class="bi bi-bounding-box me-1 text-warning"></i> Edition du profil: <a href="{{ path("admin_edition_exposant", {"id": exposant.id}) }}" title="Cliquez ici pour modifier les information de cette inscription" class="btn btn-outline-dark btn-sm">Editer</a></li>
+                <li class="list-group-item"><i class="bi bi-telephone-fill me-1 text-primary"></i> Les produits qui seront exposer: {{ exposant.produits }}</li>
               </ul><!-- End List group With Icons -->
 
             </div>

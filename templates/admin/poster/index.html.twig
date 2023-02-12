@@ -1,46 +1,73 @@
 {% extends 'base.admin.html.twig' %}
 
-{% block title %}Liste de tout les inscrits ayant deposé un RESUMER{% endblock %}
+{% block title %}Liste de tout les inscrits ayant deposé un RESUMER
+{% endblock %}
 
 {% block page %}
-        <div class="pagetitle">
-      <h1>Posters</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Liste</a></li>
-          <li class="breadcrumb-item active"></li>
-        </ol>
-      </nav>
-    </div>
+	<div class="pagetitle">
+		<h1>Posters</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Liste</a>
+				</li>
+				<li class="breadcrumb-item active"></li>
+			</ol>
+		</nav>
+	</div>
 {% endblock %}
 
 {% block body %}
-    <div class="card-body">
-              <h2 class="card-title">Liste de tout les inscript ayant deposé un RESUMER</h2>
-              <!-- Bordered Table -->
-              <table class="table table-bordered border-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for poster in posters %}
-                  <tr>
-                    <th scope="row">{{ poster.numero }}</th>
-                    <td>{{ poster.nom }}</td>
-                    <td>{{ poster.prenom }}</td>
-                    <td>{{ poster.dateCreation|date("m-d-Y") }}</td>
-                    <td><a href="{{ path("admin_user_detail", {"id": poster.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-              
-    </div>
+<div class="container">
+		<div class="content"><br>
+			<div class="card p-3">
+				<div class="panel-heading"><br>
+					<form method="post" action="{{ path("admin_telecharger_liste_posters") }}">
+						<div class="row">
+							<div class="col-md-6">
+								<h5>Telecharger la liste en fichier Excel</h5>
+							</div>
+							<div class="col-md-4">
+								<select name="file_type" class="form-control input-sm">
+									<option value="Xlsx">Xlsx</option>
+									<option value="Xls">Xls</option>
+									{# <option value="Csv">Csv</option> #}
+								</select>
+							</div>
+							<div class="col-md-2">
+								<input type="submit" name="export" class="btn btn-primary btn-sm float-right" value="Telecharger"/>
+							</div>
+						</div>
+					</form>
+				</div><br>
+			</div>
+		</div>
+	</div>
+		<h2 class="card-title">Liste de tout les inscript ayant deposé un RESUMER</h2>
+		<!-- Bordered Table -->
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Date</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for poster in posters %}
+					<tr>
+						<th scope="row">{{ poster.numero }}</th>
+						<td>{{ poster.nom }}</td>
+						<td>{{ poster.prenom }}</td>
+						<td>{{ poster.dateCreation|date("m-d-Y") }}</td>
+						<td>
+							<a href="{{ path("admin_user_detail", {"id": poster.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
 {% endblock %}

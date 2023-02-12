@@ -64,5 +64,53 @@ class ExposantController extends AbstractController
         ]);
     }
 
+    #[Route('/exposants/telecharger', name: 'telecharger_liste_exposants')]
+    public function telecharger(ExpositaireRepository $expositaireRepository, Request $request): Response
+    {
+        if (isset($_POST["export"])) {
+            $type_fichier = $request->get("file_type");
+
+            $exposants = $expositaireRepository->findAll();
+
+            $fichier = new Spreadsheet();
+
+            $active_feuille = $fichier->getActiveSheet();
+
+            $active_feuille->setCellValue("A1", "Noms");
+            $active_feuille->setCellValue("B1", "Prenoms");
+            $active_feuille->setCellValue("C1", "Contacts");
+            $active_feuille->setCellValue("D1", "NomStructures");
+
+            $count = 2;
+
+            foreach ($exposants as $exposant) {
+                    $active_feuille->setCellValue("A" . $count, $exposant->getNom());
+                    $active_feuille->setCellValue("B" . $count, $exposant->getPrenom());
+                    $active_feuille->setCellValue("C" . $count, $exposant->getContact());
+                    $active_feuille->setCellValue("D" . $count, $exposant->getStructure());
+    
+                    $count = $count + 1;
+            }
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($fichier, $type_fichier);
+
+            $nom_fichier = "liste des exposants" . '.' . strtolower($type_fichier);
+
+            $writer->save($nom_fichier);
+
+            header('Content-Type: application/x-www-form-urlencoded');
+
+            header('Content-Transfer-Encoding: Binary');
+
+            header("Content-disposition: attachment; filename=\"" . $nom_fichier . "\"");
+
+            readfile($nom_fichier);
+
+            unlink($nom_fichier);
+
+            return $this->redirectToRoute('admin_liste_inscription_exposants');
+        }
+    }
+
  
 }

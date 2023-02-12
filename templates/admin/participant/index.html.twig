@@ -15,10 +15,37 @@
 {% endblock %}
 
 {% block body %}
+
+<div class="container">
+		<div class="content"><br>
+			<div class="card p-3">
+				<div class="panel-heading"><br>
+					<form method="post" action="{{ path("admin_telecharger_liste_participants") }}">
+						<div class="row">
+							<div class="col-md-6">
+								<h5>Telecharger la liste en fichier Excel</h5>
+							</div>
+							<div class="col-md-4">
+								<select name="file_type" class="form-control input-sm">
+									<option value="Xlsx">Xlsx</option>
+									<option value="Xls">Xls</option>
+									{# <option value="Csv">Csv</option> #}
+								</select>
+							</div>
+							<div class="col-md-2">
+								<input type="submit" name="export" class="btn btn-primary btn-sm float-right" value="Telecharger"/>
+							</div>
+						</div>
+					</form>
+				</div><br>
+			</div>
+		</div>
+	</div>
+
     <div class="card-body">
               <h2 class="card-title">Liste de tout les inscrits n'ayant pas de resumé(Participants)</h2>
               <!-- Bordered Table -->
-              <table class="table table-bordered border-dark">
+              <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th scope="col">#</th>

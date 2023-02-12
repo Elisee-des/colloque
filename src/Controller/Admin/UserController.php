@@ -108,6 +108,54 @@ class UserController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/inscriptions/telecharger', name: 'telecharger_liste_users')]
+    public function telecharger(UserRepository $userRepository, Request $request): Response
+    {
+        if (isset($_POST["export"])) {
+            $type_fichier = $request->get("file_type");
+
+            $inscrits = $userRepository->findAll();
+
+            $fichier = new Spreadsheet();
+
+            $active_feuille = $fichier->getActiveSheet();
+
+            $active_feuille->setCellValue("A1", "Noms");
+            $active_feuille->setCellValue("B1", "Prenoms");
+            $active_feuille->setCellValue("C1", "Contacts");
+
+            $count = 2;
+
+            foreach ($inscrits as $inscrit) {
+                    $active_feuille->setCellValue("A" . $count, $inscrit->getNom());
+                    $active_feuille->setCellValue("B" . $count, $inscrit->getPrenom());
+                    $active_feuille->setCellValue("C" . $count, $inscrit->getContact());
+    
+                    $count = $count + 1;
+            }
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($fichier, $type_fichier);
+
+            $nom_fichier = "liste de tout les inscripts sur le site" . '.' . strtolower($type_fichier);
+
+            $writer->save($nom_fichier);
+
+            header('Content-Type: application/x-www-form-urlencoded');
+
+            header('Content-Transfer-Encoding: Binary');
+
+            header("Content-disposition: attachment; filename=\"" . $nom_fichier . "\"");
+
+            readfile($nom_fichier);
+
+            unlink($nom_fichier);
+
+            return $this->redirectToRoute('admin_liste_inscription');
+        }
+    }
+
+
     #[Route('/telechargement/{communication}', name: 'telecharger')]
     public function telechargementFichier($communication, Request $request): Response
     {

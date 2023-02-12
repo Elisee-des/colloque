@@ -102,4 +102,59 @@ class ParticipantController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/participants/telecharger', name: 'telecharger_liste_participants')]
+    public function telecharger(UserRepository $userRepository, Request $request): Response
+    {
+        if (isset($_POST["export"])) {
+            $type_fichier = $request->get("file_type");
+
+            $participants = $userRepository->findAll();
+            foreach($participants as $participant)
+            {
+                $resumer = $participant->getResume();
+                if($resumer == '')
+                {
+                    $participants[] = $participant;
+                }
+            }
+
+            $fichier = new Spreadsheet();
+
+            $active_feuille = $fichier->getActiveSheet();
+
+            $active_feuille->setCellValue("A1", "Noms");
+            $active_feuille->setCellValue("B1", "Prenoms");
+            $active_feuille->setCellValue("B1", "Contacts");
+
+            $count = 2;
+
+            foreach ($participants as $participant) {
+                    $active_feuille->setCellValue("A" . $count, $participant->getNom());
+                    $active_feuille->setCellValue("B" . $count, $participant->getPrenom());
+                    $active_feuille->setCellValue("C" . $count, $participant->getContact());
+    
+                    $count = $count + 1;
+            }
+
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($fichier, $type_fichier);
+
+            $nom_fichier = "liste des participants" . '.' . strtolower($type_fichier);
+
+            $writer->save($nom_fichier);
+
+            header('Content-Type: application/x-www-form-urlencoded');
+
+            header('Content-Transfer-Encoding: Binary');
+
+            header("Content-disposition: attachment; filename=\"" . $nom_fichier . "\"");
+
+            readfile($nom_fichier);
+
+            unlink($nom_fichier);
+
+            return $this->redirectToRoute('admin_participant');
+        }
+    }
+
 }
