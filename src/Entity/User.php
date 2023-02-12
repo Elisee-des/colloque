@@ -76,10 +76,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Email::class, orphanRemoval: true)]
     private Collection $emails;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $LastConnexion = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
         $this->emails = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->prenom . ' ' . $this->nom . ' ' . $this->email;
     }
 
     public function getId(): ?int
@@ -352,6 +360,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $email->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastConnexion(): ?\DateTimeInterface
+    {
+        return $this->LastConnexion;
+    }
+
+    public function setLastConnexion(?\DateTimeInterface $LastConnexion): self
+    {
+        $this->LastConnexion = $LastConnexion;
 
         return $this;
     }

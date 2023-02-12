@@ -1,0 +1,46 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Hisroriques des inscrits connecter sur la plateforme{% endblock %}
+
+{% block page %}
+        <div class="pagetitle">
+      <h1>Historiques de connexion</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Historiques</a></li>
+          <li class="breadcrumb-item active"></li>
+        </ol>
+      </nav>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Historiques de connexions des inscrits</h2>
+              <!-- Bordered Table -->
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">AdresseIp</th>
+                    <th scope="col">DernierConnexion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for historiqueConnexion in historiqueConnexions %}
+                  <tr>
+                    <th scope="row">{{ historiqueConnexion.nom }}</th>
+                    <td>{{ historiqueConnexion.email }}</td>
+                    <td>{{ historiqueConnexion.url }}</td>
+                    <td>{{ historiqueConnexion.ip }}</td>
+                    <td>{{ historiqueConnexion.dateConnxion|date("d-m-Y") }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+    </div>
+
+{% endblock %}
