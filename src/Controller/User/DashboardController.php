@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user', name: 'user_')]
@@ -160,5 +161,44 @@ class DashboardController extends AbstractController
         return $this->render('user/dashboard/imagePayement.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/editer/motdepasse', name: 'editer_password')]
+    public function editerPassword(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHash): Response
+    {
+        /**
+         * @var User
+         */
+
+        $user = $this->getUser();
+
+        if(isset($_POST["Modifier"]))
+        {
+            $nouveauPassword = $request->get("newpassword");
+            $passwordRepeter = $request->get("renewpassword");
+            
+            if($nouveauPassword == $passwordRepeter);
+            {
+                $nouveauPasswordHash = $passwordHash->hashPassword($user, $nouveauPassword);
+                $user->setPassword($nouveauPasswordHash);
+            
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Vous avez modifier avec success votre profile'
+                );
+               }
+
+                $this->addFlash(
+                    'success',
+                    "Votre mot de passe n'est pas identique. Veuillez ressaié"
+                );
+
+        }
+
+        return $this->redirectToRoute('user_dashboard');
+
     }
 }
