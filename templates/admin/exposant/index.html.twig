@@ -61,7 +61,7 @@
                     <th scope="row">{{ exposant.numero }}</th>
                     <td>{{ exposant.nom }}</td>
                     <td>{{ exposant.prenom }}</td>
-                    <td>{{ exposant.dateCreation|date("m-d-Y") }}</td>
+                    <td>{{ exposant.dateCreation|date("d-m-Y") }}</td>
                     <td><a href="{{ path("admin_exposant_detail", {"id": exposant.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}

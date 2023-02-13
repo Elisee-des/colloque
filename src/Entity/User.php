@@ -286,29 +286,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getStructure(): ?string
-    {
-        return $this->structure;
-    }
-
-    public function setStructure(?string $structure): self
-    {
-        $this->structure = $structure;
-
-        return $this;
-    }
-
-    public function getProduits(): ?string
-    {
-        return $this->produits;
-    }
-
-    public function setProduits(?string $produits): self
-    {
-        $this->produits = $produits;
-
-        return $this;
-    }
 
     public function getContact(): ?string
     {

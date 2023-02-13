@@ -43,6 +43,8 @@
 			</div>
 		</div>
 	</div>
+	<div class="card-body">
+		
 		<h2 class="card-title">Liste de tout les inscript ayant deposé un RESUMER</h2>
 		<!-- Bordered Table -->
 		<table class="table table-bordered">
@@ -61,7 +63,7 @@
 						<th scope="row">{{ poster.numero }}</th>
 						<td>{{ poster.nom }}</td>
 						<td>{{ poster.prenom }}</td>
-						<td>{{ poster.dateCreation|date("m-d-Y") }}</td>
+						<td>{{ poster.dateCreation|date("d-m-Y") }}</td>
 						<td>
 							<a href="{{ path("admin_user_detail", {"id": poster.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a>
 						</td>
@@ -70,4 +72,5 @@
 			</tbody>
 		</table>
 
+	</div>
 {% endblock %}

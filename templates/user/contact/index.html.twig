@@ -1,0 +1,28 @@
+{% extends 'base.user.html.twig' %}
+
+{% block title %}Contacter l'utilisateur{% endblock %}
+
+{% block page %}
+        <div class="pagetitle">
+      <h1>Contact</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">contact</a></li>
+          <li class="breadcrumb-item active"></li>
+        </ol>
+      </nav>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Contacter Ecriver un message aux Administrateur</h2>
+              <!-- Bordered Table -->
+              <div class="content">
+                <div class="card p-4">
+                    {{ form(form) }}
+                </div>
+              </div>
+    </div>
+
+{% endblock %}

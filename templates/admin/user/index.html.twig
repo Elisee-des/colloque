@@ -61,7 +61,7 @@
                     <th scope="row">{{ user.numero }}</th>
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
-                    <td>{{ user.dateCreation|date("m-d-Y") }}</td>
+                    <td>{{ user.dateCreation|date("d-m-Y") }}</td>
                     <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a></td>
                   </tr>
                   {% endfor %}
