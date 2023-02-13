@@ -79,6 +79,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $LastConnexion = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isAdmin = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -132,7 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = '';
 
         return array_unique($roles);
     }
@@ -349,6 +352,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastConnexion(?\DateTimeInterface $LastConnexion): self
     {
         $this->LastConnexion = $LastConnexion;
+
+        return $this;
+    }
+
+    public function isIsAdmin(): ?bool
+    {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin(?bool $isAdmin): self
+    {
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }
