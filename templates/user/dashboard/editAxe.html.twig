@@ -1,0 +1,28 @@
+{% extends 'base.user.html.twig' %}
+
+{% block title %}Modifier votre axe{% endblock %}
+
+{% block page %}
+        <div class="pagetitle">
+      <h1>Resumer</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Axe</a></li>
+          <li class="breadcrumb-item active"></li>
+        </ol>
+      </nav>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Modifier votre axe</h2>
+              <!-- Bordered Table -->
+              <div class="content">
+                <div class="card p-4">
+                    {{ form(form) }}
+                </div>
+              </div>
+    </div>
+
+{% endblock %}

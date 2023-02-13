@@ -83,10 +83,10 @@
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">A payer</div>
-										{% if app.user.imagePayement == '' %}
-											<div class="col-lg-9 col-md-8">Non, pas encore</div>
-										{% else %}
+										{% if app.user.imagePayement != '' %}
 											<div class="col-lg-9 col-md-8">OUI</div>
+										{% else %}
+											<div class="col-lg-9 col-md-8">Non, pas encore</div>
 										{% endif %}
 									</div>
 
@@ -117,7 +117,7 @@
 											{% if app.user.imagePayement != '' %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'axe</label>
 											<div class="col-md-8 col-lg-9">
-												<a href="" class="btn btn-primary btn-sm">Editer</a>
+												<a href="{{ path("user_editer_axe") }}" class="btn btn-primary btn-sm">Editer</a>
 											</div>
                                         {% else %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas d'axe</label>
@@ -137,7 +137,7 @@
 
 										<div class="row mb-3">
                                         {% if app.user.imagePayement == '' %}
-											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Envoyez l'image de payement</label>
+											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Envoyez/Renvoyez l'image de payement</label>
                                         {% else %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'image de payement</label>
                                         {% endif %}

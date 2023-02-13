@@ -3,6 +3,7 @@
 namespace App\Controller\User;
 
 use App\Form\User\EditeImagePayementType;
+use App\Form\User\EditerAxeType;
 use App\Form\User\EditeResumeType;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -92,6 +93,39 @@ class DashboardController extends AbstractController
     }
 
     
+    #[Route('/editer/axe', name: 'editer_axe')]
+    public function editerAxe(Request $request, EntityManagerInterface $em): Response
+    {
+        /**
+         * @var User
+         */
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(EditerAxeType::class, $user);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Vous avez modifier avec success votre Axe'
+            );
+
+            return $this->redirectToRoute('user_dashboard');
+
+        }
+
+        return $this->render('user/dashboard/editAxe.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    
     #[Route('/editer/imagePayement', name: 'editer_imagePayement')]
     public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em): Response
     {
@@ -109,7 +143,7 @@ class DashboardController extends AbstractController
             $fichier = $form->get("imagePayementFile")->getData();
             $imagePayementFichier = $uploaderService->uploader($fichier);
             
-            $user->setResume($imagePayementFichier);
+            $user->setImagePayement($imagePayementFichier);
 
             $em->persist($user);
             $em->flush();
