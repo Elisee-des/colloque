@@ -4,6 +4,7 @@ namespace App\Controller\User;
 
 use App\Form\User\EditeImagePayementType;
 use App\Form\User\EditeResumeType;
+use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,19 +56,38 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/editer/resumer', name: 'editer_resumer')]
-    public function editerResumer(Request $request): Response
+    public function editerResumer(Request $request, EntityManagerInterface $em, UploaderService $uploaderService): Response
     {
+        /**
+         * @var User
+         */
+
+        $user = $this->getUser();
 
         $form = $this->createForm(EditeResumeType::class);
 
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
-            dd($request);
+            $fichier = $form->get("resumeFile")->getData();
+            $resumerFichier = $uploaderService->uploader($fichier);
+            
+            $user->setResume($resumerFichier);
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Vous avez modifier avec success votre profile'
+            );
+
+            return $this->redirectToRoute('user_dashboard');
+
         }
 
         return $this->render('user/dashboard/editResumer.html.twig', [
-            // 'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
