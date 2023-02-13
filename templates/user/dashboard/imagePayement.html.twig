@@ -1,0 +1,28 @@
+{% extends 'base.user.html.twig' %}
+
+{% block title %}Modifier votre Image de payement{% endblock %}
+
+{% block page %}
+        <div class="pagetitle">
+      <h1>Image de payement</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Image</a></li>
+          <li class="breadcrumb-item active"></li>
+        </ol>
+      </nav>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+              <h2 class="card-title">Modifier votre image de payement</h2>
+              <!-- Bordered Table -->
+              <div class="content">
+                <div class="card p-4">
+                    {{ form(form) }}
+                </div>
+              </div>
+    </div>
+
+{% endblock %}

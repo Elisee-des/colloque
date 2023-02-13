@@ -4,6 +4,7 @@ namespace App\Form\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -15,7 +16,7 @@ class EditeImagePayementType extends AbstractType
         $builder
         ->add('imagePayementFile', FileType::class, [
             "mapped" => false,
-            "label"=> "Entrer votre resumer",
+            "label"=> "Entrer votre Image de payement",
             "attr" => [
                 "class" => "form-control mb-3"
             ],
@@ -32,6 +33,7 @@ class EditeImagePayementType extends AbstractType
                 ])
             ]
         ])
+        ->add("Modifier", SubmitType::class)
         ;
     }
 

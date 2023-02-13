@@ -79,7 +79,7 @@ class DashboardController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Vous avez modifier avec success votre profile'
+                'Vous avez modifier avec success votre resumer'
             );
 
             return $this->redirectToRoute('user_dashboard');
@@ -93,19 +93,38 @@ class DashboardController extends AbstractController
 
     
     #[Route('/editer/imagePayement', name: 'editer_imagePayement')]
-    public function editerImagePayement(Request $request): Response
+    public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em): Response
     {
+        /**
+         * @var User
+         */
+
+         $user = $this->getUser();
 
         $form = $this->createForm(EditeImagePayementType::class);
 
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
-            dd($request);
+            $fichier = $form->get("imagePayementFile")->getData();
+            $imagePayementFichier = $uploaderService->uploader($fichier);
+            
+            $user->setResume($imagePayementFichier);
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Vous avez modifier avec success votre image de payement'
+            );
+
+            return $this->redirectToRoute('user_dashboard');
+
         }
 
         return $this->render('user/dashboard/imagePayement.html.twig', [
-            // 'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 }
