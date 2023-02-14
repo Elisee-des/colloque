@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Service;
+
 /*
 This call sends a message based on a template.
 */
@@ -7,7 +10,7 @@ require 'vendor/autoload.php';
 use Mailjet\Client;
 use \Mailjet\Resources;
 
-class Mail
+class SenderMailService
 {
     private $api_key = "c0d9f349bae53af4eca67c95b6d1e598";
     private $api_key_private = "bd632692f6ec5b5532884326095a6d19";

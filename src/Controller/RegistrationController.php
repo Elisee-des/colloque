@@ -4,20 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Admin\InscriptionType;
-use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginAuthenticator;
+use App\Service\SenderMailService;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
-use Mail;
-use Mailjet\MailjetApiv3Test;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -66,8 +63,9 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $email = new Mail();
-            $email->send();
+            $email = new SenderMailService();
+            $email->send($user->getEmail(), $user->getNom(), "Message de bienvenu",
+             "Vous inscription au colloque internation c'est derouler avec succes. Merci de toujour avoir l'oeil sur votre boite de reception");
             
             $this->addFlash(
                 'success',

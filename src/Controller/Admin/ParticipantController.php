@@ -116,7 +116,7 @@ class ParticipantController extends AbstractController
                 $resumer = $participant->getResume();
                 if($resumer == '')
                 {
-                    $participants[] = $participant;
+                    $participats[] = $participant;
                 }
             }
 
@@ -130,7 +130,7 @@ class ParticipantController extends AbstractController
 
             $count = 2;
 
-            foreach ($participants as $participant) {
+            foreach ($participats as $participant) {
                     $active_feuille->setCellValue("A" . $count, $participant->getNom());
                     $active_feuille->setCellValue("B" . $count, $participant->getPrenom());
                     $active_feuille->setCellValue("C" . $count, $participant->getContact());
