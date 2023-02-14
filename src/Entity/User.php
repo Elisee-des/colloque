@@ -59,15 +59,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Axe $axe = null;
 
     #[ORM\Column(nullable: true)]
-    private ?bool $terms = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $structure = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $produits = null;
-
-    #[ORM\Column(nullable: true)]
     private ?string $contact = null;
 
     #[ORM\Column(nullable: true)]
@@ -82,10 +73,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $isAdmin = null;
 
+    #[ORM\ManyToMany(targetEntity: Commentaire::class, inversedBy: 'users')]
+    private Collection $commentaires;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
         $this->emails = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function __toString()
@@ -278,18 +273,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isTerms(): ?bool
-    {
-        return $this->terms;
-    }
-
-    public function setTerms(?bool $terms): self
-    {
-        $this->terms = $terms;
-
-        return $this;
-    }
-
     public function getContact(): ?string
     {
         return $this->contact;
@@ -364,6 +347,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsAdmin(?bool $isAdmin): self
     {
         $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires->add($commentaire);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        $this->commentaires->removeElement($commentaire);
 
         return $this;
     }

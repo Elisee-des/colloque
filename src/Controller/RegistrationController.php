@@ -9,6 +9,8 @@ use App\Repository\UserRepository;
 use App\Security\LoginAuthenticator;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
+use Mail;
+use Mailjet\MailjetApiv3Test;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,21 +29,21 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $users = $userRepository->findAll();
             $numero = count($users);
             $numeroUser = $numero+1;
-
+            
             $passwordClaire = $request->get("inscription")["password"]["first"];
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
-
+            
             if($resumer == NULL)
             {
                 $user->setResume($resumer);
             }
-
+            
             if($imagePayement == NULL)
             {
                 $user->setImagePayement($imagePayement);
@@ -50,27 +52,29 @@ class RegistrationController extends AbstractController
             else {
                 $nouveauNom2 = $uploaderService->uploader($resumer);
                 $nouveauNom3 = $uploaderService->uploader($imagePayement);
-
+                
                 $user
                 ->setResume($nouveauNom2)
                 ->setImagePayement($nouveauNom3);
             }
-
+            
             $user->setPassword($password)
             ->setContact($numeroUser)
-            ->setTerms(true)
             ->setAPayer(false);
             // encode the plain password
-
+            
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $email = new Mail();
+            $email->send();
+            
             $this->addFlash(
                 'success',
                 'Vous avez reussi votre inscription'
             );
             // do anything else you need here, like send an email
-
+            
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
