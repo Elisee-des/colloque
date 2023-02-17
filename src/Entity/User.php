@@ -76,6 +76,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Commentaire::class, inversedBy: 'users')]
     private Collection $commentaires;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?File $file = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -371,6 +374,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeCommentaire(Commentaire $commentaire): self
     {
         $this->commentaires->removeElement($commentaire);
+
+        return $this;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(File $file): self
+    {
+        // set the owning side of the relation if necessary
+        if ($file->getUser() !== $this) {
+            $file->setUser($this);
+        }
+
+        $this->file = $file;
 
         return $this;
     }

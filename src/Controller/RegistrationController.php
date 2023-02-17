@@ -63,10 +63,6 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $email = new SenderMailService();
-            $email->send($user->getEmail(), $user->getNom(), "Message de bienvenu",
-             "Vous inscription au colloque internation c'est derouler avec succes. Merci de toujour avoir l'oeil sur votre boite de reception");
-            
             $this->addFlash(
                 'success',
                 'Vous avez reussi votre inscription'

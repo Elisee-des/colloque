@@ -125,13 +125,13 @@
 										</div>
 
 										<div class="row mb-3">
-											{% if app.user.resume != '' %}
+											{% if app.user.resume == ''  %}
+												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas de resumer déja envoyé</label>
+											{% else %}
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Renvoyez votre resumer</label>
 											<div class="col-md-8 col-lg-9">
 												<a href="{{ path("user_editer_resumer") }}" class="btn btn-primary btn-sm">Commencer</a>
 											</div>
-											{% else %}
-												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas de resumer déja envoyé</label>
 											{% endif %}
 										</div>
 
