@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\File;
 use App\Entity\User;
 use App\Form\Admin\InscriptionType;
 use App\Repository\UserRepository;
@@ -35,6 +36,7 @@ class RegistrationController extends AbstractController
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
+            $nomFichier = $resumer->getClientOriginalName();
             
             if($resumer == NULL)
             {
@@ -47,12 +49,21 @@ class RegistrationController extends AbstractController
             }
 
             else {
-                $nouveauNom2 = $uploaderService->uploader($resumer);
+                $file_entity = new File();
+                
+                $nouveauNomResumer = $uploaderService->uploader($resumer);
                 $nouveauNom3 = $uploaderService->uploader($imagePayement);
+
                 
                 $user
-                ->setResume($nouveauNom2)
+                ->setResume($nouveauNomResumer)
                 ->setImagePayement($nouveauNom3);
+
+                $file_entity->setNouveauNonFichier($nouveauNomResumer);
+                $file_entity->setNomFichier($nomFichier);
+                $file_entity->setDateCreation(new \DateTime());
+                $file_entity->setUser($user);
+                ;
             }
             
             $user->setPassword($password)
@@ -61,6 +72,7 @@ class RegistrationController extends AbstractController
             // encode the plain password
             
             $entityManager->persist($user);
+            $entityManager->persist($file_entity);
             $entityManager->flush();
 
             $this->addFlash(

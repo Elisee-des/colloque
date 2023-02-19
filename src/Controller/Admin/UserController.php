@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Form\Admin\editionCompteInscriptionType;
 use App\Form\Admin\editionPasswordType;
+use App\Repository\FileRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
@@ -19,6 +20,7 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 #[Route('/admin', name: 'admin_')]
 class UserController extends AbstractController
@@ -157,24 +159,17 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/telechargement/{communication}', name: 'telecharger')]
-    public function telechargementFichier($communication, Request $request): Response
+    #[Route('/telechargement/{id}', name: 'telecharger')]
+    public function telechargementFichier($id, FileRepository $fileRepository): Response
     {
-        
-    $filesystem = new Filesystem();
+        $resumer = $fileRepository->find($id);
+        $nomResusumer = $resumer->getNomFichier();
+        $nouveauNonResumer = $resumer->getNouveauNonFichier();
 
-    try {
-        $filesystem->mkdir(
-            Path::normalize(sys_get_temp_dir().'/'.random_int(0, 1000)),
-        );
-    } catch (IOExceptionInterface $exception) {
-        echo "An error occurred while creating your directory at ".$exception->getPath();
-    }
-
-    // dd($filesystem->ch);
-
-    return $this->render('admin/user/editionPassword.html.twig', [
-    ]);
-
+        $file_with_path = $this->getParameter("images_directory") . "/" . $nouveauNonResumer;
+        $response = new BinaryFileResponse( $file_with_path );
+        $response->headers->set ( 'Content-Type', 'text/plain' );
+        $response->setContentDisposition ( ResponseHeaderBag::DISPOSITION_ATTACHMENT, $nomResusumer );
+        return $response;
     }
 }
