@@ -1,20 +1,81 @@
-<!DOCTYPE html>
+{% extends 'base.user.html.twig' %}
 
-<title>Hello DiscussionController!</title>
+{% block title %}Discussion avec un utilisateur
+{% endblock %}
+
+{% block page %}
+	<div class="pagetitle">
+		<h1>Discussion</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Discussion</a>
+				</li>
+				<li class="breadcrumb-item active"></li>
+			</ol>
+		</nav>
+	</div>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="card-body">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<div class="clearfix mb-3">
+						<div class="col-lg-6">
+							<h2 class="card-titl">Discussion avec les Utilisateur</h2>
+						</div>
+						<div class="col-lg-6">
+							<a href="" class="btn btn-outline-primary btn btn-sm float-rigth">Commencer un discussion</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bordered Table -->
+		<section class="section">
+			<div class="row align-items-top">
+				<div class="card p-5">
+					<div
+						class="col-lg-6">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+						<div class="card alert alert-secondary">
+							<div class="card-body">
+								<h3 class="card-titl">Mon maessage en tant que adminisateur</h3><hr>
+								<h4>Ut in ea error laudantium quas omnis officia. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+								</h4>
+								<span class='float-rigth'>
+									<strong>repondu le : 8/90/2200</strong>
+								</span>
+							</div><br>
+							<!-- End Default Card -->
+						</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Symfony Projet/ColloqueInternational/ColloqueInternationalSymfony/src/Controller/Admin/DiscussionController.php'|file_link(0) }}">src/Controller/Admin/DiscussionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Symfony Projet/ColloqueInternational/ColloqueInternationalSymfony/templates/admin/discussion/index.html.twig'|file_link(0) }}">templates/admin/discussion/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+						<!-- Default Card -->
+						<div class="card p-2">
+							<div class="card-body">
+								<h3 class="card-titl">Message de l'utilisateur</h3><hr>
+								<h4>Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+								</h4>
+								<span class='float-rigth'>
+									<strong>Envoyez le : 7/00/2200</strong>
+								</span>
+							</div><br>
+							<!-- End Default Card -->
+						</div>
+
+
+
+						<div class="card-body">
+							<h4>
+								<a href="" class="btn btn-primary">Repondre</a>
+							</h4>
+							<!-- End Default Card -->
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+	{% endblock %}
