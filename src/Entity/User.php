@@ -79,6 +79,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?File $file = null;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ImageFile $imageFile = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -395,5 +398,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getImageFile(): ?ImageFile
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(ImageFile $imageFile): self
+    {
+        // set the owning side of the relation if necessary
+        if ($imageFile->getUser() !== $this) {
+            $imageFile->setUser($this);
+        }
+
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
 
 }

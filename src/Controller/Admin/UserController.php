@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\Admin\editionCompteInscriptionType;
 use App\Form\Admin\editionPasswordType;
 use App\Repository\FileRepository;
+use App\Repository\ImageFileRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;
@@ -159,7 +160,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/telechargement/{id}', name: 'telecharger')]
+    #[Route('/telechargement/resumer/{id}', name: 'telecharger_resumer')]
     public function telechargementFichier($id, FileRepository $fileRepository): Response
     {
         $resumer = $fileRepository->find($id);
@@ -170,6 +171,20 @@ class UserController extends AbstractController
         $response = new BinaryFileResponse( $file_with_path );
         $response->headers->set ( 'Content-Type', 'text/plain' );
         $response->setContentDisposition ( ResponseHeaderBag::DISPOSITION_ATTACHMENT, $nomResusumer );
+        return $response;
+    }
+
+    #[Route('/telechargement/image-payement/{id}', name: 'telecharger_image_payement')]
+    public function telechargementImagePayement($id, ImageFileRepository $imageFileRepository): Response
+    {
+        $image = $imageFileRepository->find($id);
+        $nomFichier = $image->getNomFichier();
+        $nouveauNomFichier = $image->getNouveauNomFichier();
+
+        $file_with_path = $this->getParameter("images_directory") . "/" . $nouveauNomFichier;
+        $response = new BinaryFileResponse( $file_with_path );
+        $response->headers->set ( 'Content-Type', 'text/plain' );
+        $response->setContentDisposition ( ResponseHeaderBag::DISPOSITION_ATTACHMENT, $nomFichier );
         return $response;
     }
 }

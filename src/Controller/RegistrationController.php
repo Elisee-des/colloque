@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\File;
+use App\Entity\ImageFile;
 use App\Entity\User;
 use App\Form\Admin\InscriptionType;
 use App\Repository\UserRepository;
@@ -37,6 +38,7 @@ class RegistrationController extends AbstractController
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
             $nomFichier = $resumer->getClientOriginalName();
+            $nomImage = $imagePayement->getClientOriginalName();
             
             if($resumer == NULL)
             {
@@ -50,29 +52,36 @@ class RegistrationController extends AbstractController
 
             else {
                 $file_entity = new File();
+                $file_image = new ImageFile();
                 
                 $nouveauNomResumer = $uploaderService->uploader($resumer);
-                $nouveauNom3 = $uploaderService->uploader($imagePayement);
+                $nouveauNomImage = $uploaderService->uploader($imagePayement);
 
                 
                 $user
                 ->setResume($nouveauNomResumer)
-                ->setImagePayement($nouveauNom3);
+                ->setImagePayement($nouveauNomImage);
 
                 $file_entity->setNouveauNonFichier($nouveauNomResumer);
                 $file_entity->setNomFichier($nomFichier);
                 $file_entity->setDateCreation(new \DateTime());
                 $file_entity->setUser($user);
+
+                $file_image->setNouveauNomFichier($nouveauNomImage);
+                $file_image->setNomFichier($nomImage);
+                $file_image->setDateCreation(new \DateTime());
+                $file_image->setUser($user);
                 ;
             }
             
             $user->setPassword($password)
-            ->setContact($numeroUser)
+            ->setNumero($numeroUser)
             ->setAPayer(false);
             // encode the plain password
             
             $entityManager->persist($user);
             $entityManager->persist($file_entity);
+            $entityManager->persist($file_image);
             $entityManager->flush();
 
             $this->addFlash(
