@@ -27,7 +27,7 @@
 							<h2 class="card-titl">Discussion avec les adminisatrateurs</h2>
 						</div>
 						<div class="col-lg-6">
-							<a href="" class="btn btn-outline-primary btn btn-sm float-rigth">Commencer un discussion</a>
+							<a href="{{ path("user_discussion_message") }}" class="btn btn-outline-primary btn btn-sm float-rigth">Commencer un discussion</a>
 						</div>
 					</div>
 				</div>
@@ -37,33 +37,37 @@
 		<section class="section">
 			<div class="row align-items-top">
 				<div class="card p-5">
-					<div
+						{% for message in messages %}
+					<div class="card">
+							<div
 						class="col-lg-6">
 
 						<!-- Default Card -->
 						<div class="card p-2">
 							<div class="card-body">
-								<h3 class="card-titl">Mon message</h3><hr>
-								<h4>Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+								<h3 class="card-titl">Mon message <a href="{{ path("user_edition_message", {"id": message.id}) }}" class="btn btn-outline-primary btn btn-sm">Editer mon message</a></h3><hr>
+								<h4>{{message.contenu}}
 								</h4>
 								<span class='float-rigth'>
-									<strong>Envoyez le : 7/00/2200</strong>
+									<strong>Envoyez le : {{message.dateCreation|date("d/m/y")}}</strong>
 								</span>
 							</div><br>
 							<!-- End Default Card -->
 						</div>
 
-						<div class="card alert alert-secondary">
+						{% for reponse in reponses %}
+							<div class="card alert alert-secondary">
 							<div class="card-body">
 								<h3 class="card-titl">Reponse des administrateurs</h3><hr>
-								<h4>Ut in ea error laudantium quas omnis officia. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+								<h4>{{reponse.contenu}}
 								</h4>
 								<span class='float-rigth'>
-									<strong>repondu le : 8/90/2200</strong>
+									<strong>Repondu le : {{reponse.dateCreation|date("d/m/y")}}</strong>
 								</span>
 							</div><br>
 							<!-- End Default Card -->
 						</div>
+						{% endfor %}
 
 
 						<div class="card-body">
@@ -73,6 +77,8 @@
 							<!-- End Default Card -->
 						</div>
 					</div>
+					</div>
+						{% endfor %}
 				</div>
 			</section>
 		</div>

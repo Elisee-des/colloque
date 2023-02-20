@@ -1,0 +1,44 @@
+{% extends 'base.user.html.twig' %}
+
+{% block title %}Envoyer un message aux administrateurs
+{% endblock %}
+
+{% block page %}
+	<div class="pagetitle">
+		<h1>Discussion</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Message</a>
+				</li>
+				<li class="breadcrumb-item active"></li>
+			</ol>
+		</nav>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<div class="card-body">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<div class="clearfix mb-3">
+						<div class="col-lg-6">
+							<h2 class="card-titl">Modifié et envoyé le message aux administrateurs</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bordered Table -->
+		<section class="section">
+			<div class="row align-items-top">
+				<div class="card p-5">
+					<div class="card">
+						{{ form(form) }}
+					</div>
+				</div>
+			</section>
+		</div>
+
+	{% endblock %}
