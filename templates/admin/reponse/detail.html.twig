@@ -1,0 +1,48 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Discussion avec
+{% endblock %}
+
+{% block page %}
+	<div class="pagetitle">
+		<h1>Liste</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Discussion</a>
+				</li>
+				<li class="breadcrumb-item active"></li>
+			</ol>
+		</nav>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<div class="card-body">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<div class="clearfix mb-3">
+						<div class="col-lg-6">
+							<h2 class="card-title">Liste des utilisat</h2>
+						</div>
+						<div
+							class="col-lg-6">{# <a href="" class="btn btn-outline-primary btn btn-sm float-rigth">Commencer un discussion</a> #}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bordered Table -->
+		<section class="section">
+			<div class="row align-items-top">
+				<div class="container">
+					{% for message in messages %}
+						<h1>{{ message.is }}</h1>
+					{% endfor %}
+				</div>
+			</section>
+		</div>
+
+	{% endblock %}
+	

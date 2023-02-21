@@ -82,6 +82,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
 
+    #[ORM\Column]
+    private ?bool $aEnvoyer = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -417,6 +420,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isAEnvoyer(): ?bool
+    {
+        return $this->aEnvoyer;
+    }
+
+    public function setAEnvoyer(bool $aEnvoyer): self
+    {
+        $this->aEnvoyer = $aEnvoyer;
 
         return $this;
     }

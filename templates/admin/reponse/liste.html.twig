@@ -1,0 +1,65 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}Liste des utilisateurs ayant ecris un message
+{% endblock %}
+
+{% block page %}
+	<div class="pagetitle">
+		<h1>Liste</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="index.html">Liste</a>
+				</li>
+				<li class="breadcrumb-item active"></li>
+			</ol>
+		</nav>
+	</div>
+{% endblock %}
+
+{% block body %}
+	<div class="card-body">
+		<div class="container">
+			<div class="content">
+				<div class="row">
+					<div class="clearfix mb-3">
+						<div class="col-lg-6">
+							<h2 class="card-title">Liste des utilisateurs ayant ecris un message</h2>
+						</div>
+						<div
+							class="col-lg-6">{# <a href="" class="btn btn-outline-primary btn btn-sm float-rigth">Commencer un discussion</a> #}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Bordered Table -->
+		<section class="section">
+			<div class="row align-items-top">
+				<div class="container">
+					<table class="table table-sm">
+					<thead>
+						<tr>
+							<th scope="col">Nom</th>
+							<th scope="col">Prenom</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr>
+								<td>{{ user.nom }}</td>
+								<td>{{ user.prenom }}</td>
+								<td>
+									<a href="{{ path("admin_detail_reponse", {"id": user.id}) }}" title="Clique pour voir les details des messages" class="btn btn-outline-primary btn-sm">Voir les messages</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				</div>
+			</section>
+		</div>
+
+	{% endblock %}
+	
