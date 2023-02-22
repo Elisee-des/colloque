@@ -22,14 +22,14 @@ class ReponseController extends AbstractController
     {
         $userss = $userRepository->findAll();
 
-        foreach ($userss as $user) {
-            if ($user->isAEnvoyer() == 1) {
-                $users[] = $user;
-            }
-        }
+        // foreach ($userss as $user) {
+        //     if ($user->isAEnvoyer() == 1) {
+        //         $users[] = $user;
+        //     }
+        // }
         
         return $this->render('admin/reponse/liste.html.twig', [
-            'users' => $users,
+            // 'users' => $users,
         ]);
     }
 

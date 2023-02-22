@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Email;
-use App\Entity\User;
 use App\Form\Admin\AdminEnvoyeMailType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,10 +33,14 @@ class ContactController extends AbstractController
             // $email = new Mail();
             // $email->AdminEnvoyeEmail($emailTo, $nom, $sujet, $message);
 
+            
+
             $this->addFlash(
                 'success',
                 "Votre email a bien ete envoyez"
             );
+
+            return $this->redirectToRoute('admin_contact');
             
         }
 

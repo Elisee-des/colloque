@@ -75,8 +75,7 @@ class RegistrationController extends AbstractController
             }
             
             $user->setPassword($password)
-            ->setNumero($numeroUser)
-            ->setAPayer(false);
+            ->setNumero($numeroUser);
             // encode the plain password
             
             $entityManager->persist($user);

@@ -46,9 +46,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $resume = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $aPayer = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagePayement = null;
 
@@ -81,9 +78,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
-
-    #[ORM\Column]
-    private ?bool $aEnvoyer = null;
 
     public function __construct()
     {
@@ -230,18 +224,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResume(?string $resume): self
     {
         $this->resume = $resume;
-
-        return $this;
-    }
-
-    public function isAPayer(): ?bool
-    {
-        return $this->aPayer;
-    }
-
-    public function setAPayer(?bool $aPayer): self
-    {
-        $this->aPayer = $aPayer;
 
         return $this;
     }
@@ -420,18 +402,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function isAEnvoyer(): ?bool
-    {
-        return $this->aEnvoyer;
-    }
-
-    public function setAEnvoyer(bool $aEnvoyer): self
-    {
-        $this->aEnvoyer = $aEnvoyer;
 
         return $this;
     }
