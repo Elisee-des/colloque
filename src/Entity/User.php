@@ -40,15 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $communication = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $resume = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $imagePayement = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
 
@@ -78,6 +69,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $presenceResumer = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $presenceImagePayement = null;
 
     public function __construct()
     {
@@ -200,42 +197,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getCommunication(): ?string
-    {
-        return $this->communication;
-    }
-
-    public function setCommunication(?string $communication): self
-    {
-        $this->communication = $communication;
-
-        return $this;
-    }
-
-    public function getResume(): ?string
-    {
-        return $this->resume;
-    }
-
-    public function setResume(?string $resume): self
-    {
-        $this->resume = $resume;
-
-        return $this;
-    }
-
-    public function getImagePayement(): ?string
-    {
-        return $this->imagePayement;
-    }
-
-    public function setImagePayement(?string $imagePayement): self
-    {
-        $this->imagePayement = $imagePayement;
 
         return $this;
     }
@@ -402,6 +363,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isPresenceResumer(): ?bool
+    {
+        return $this->presenceResumer;
+    }
+
+    public function setPresenceResumer(?bool $presenceResumer): self
+    {
+        $this->presenceResumer = $presenceResumer;
+
+        return $this;
+    }
+
+    public function isPresenceImagePayement(): ?bool
+    {
+        return $this->presenceImagePayement;
+    }
+
+    public function setPresenceImagePayement(?bool $presenceImagePayement): self
+    {
+        $this->presenceImagePayement = $presenceImagePayement;
 
         return $this;
     }

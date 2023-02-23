@@ -16,17 +16,9 @@ class PosterController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
-        foreach($users as $user)
-        {
-            $resumer = $user->getResume();
-            if($resumer != '')
-            {
-                $posters[] = $user;
-            }
-        }
 
         return $this->render('admin/poster/index.html.twig', [
-            'posters' => $posters,
+            'posters' => $users,
         ]);
     }
 
@@ -39,8 +31,8 @@ class PosterController extends AbstractController
             $posters = $userRepository->findAll();
             foreach($posters as $poster)
             {
-                $resumer = $poster->getResume();
-                if($resumer != '')
+                $resumer = $poster->isPresenceResumer();
+                if($resumer != 0)
                 {
                     $posters[] = $poster;
                 }

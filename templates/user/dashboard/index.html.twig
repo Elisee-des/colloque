@@ -73,17 +73,17 @@
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Resumer déposer ?</div>
-										{% if app.user.resume == '' %}
-											<div class="col-lg-9 col-md-8">Aucun</div>
-										{% else %}
+										{% if app.user.presenceResumer != 0 %}
 											<div class="col-lg-9 col-md-8">OUI</div>
+										{% else %}
+											<div class="col-lg-9 col-md-8">Aucun</div>
 										{% endif %}
 
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">A payer</div>
-										{% if app.user.imagePayement != '' %}
+										{% if app.user.presenceImagePayement != 0 %}
 											<div class="col-lg-9 col-md-8">OUI</div>
 										{% else %}
 											<div class="col-lg-9 col-md-8">Non, pas encore</div>
@@ -114,7 +114,7 @@
 
 										<div class="row mb-3">
                                         
-											{% if app.user.imagePayement != '' %}
+											{% if app.user.presenceImagePayement != 0 %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'axe</label>
 											<div class="col-md-8 col-lg-9">
 												<a href="{{ path("user_editer_axe") }}" class="btn btn-primary btn-sm">Editer</a>
@@ -125,7 +125,7 @@
 										</div>
 
 										<div class="row mb-3">
-											{% if app.user.resume == ''  %}
+											{% if app.user.presenceResumer == 0  %}
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas de resumer déja envoyé</label>
 											{% else %}
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Renvoyez votre resumer</label>
@@ -136,7 +136,7 @@
 										</div>
 
 										<div class="row mb-3">
-                                        {% if app.user.imagePayement == '' %}
+                                        {% if app.user.presenceImagePayement == 0 %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Envoyez/Renvoyez l'image de payement</label>
                                         {% else %}
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'image de payement</label>

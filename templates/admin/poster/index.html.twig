@@ -59,7 +59,8 @@
 			</thead>
 			<tbody>
 				{% for poster in posters %}
-					<tr>
+					{% if poster.presenceResumer != 0 %}
+						<tr>
 						<th scope="row">{{ poster.numero }}</th>
 						<td>{{ poster.nom }}</td>
 						<td>{{ poster.prenom }}</td>
@@ -67,6 +68,7 @@
 						<td>
 							<a href="{{ path("admin_user_detail", {"id": poster.id}) }}" title="Clique pour voir les details de cet inscript" class="btn btn-outline-primary btn-sm">Détails</a>
 						</td>
+					{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>

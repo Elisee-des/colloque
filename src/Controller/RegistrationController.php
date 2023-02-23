@@ -40,14 +40,14 @@ class RegistrationController extends AbstractController
             $nomFichier = $resumer->getClientOriginalName();
             $nomImage = $imagePayement->getClientOriginalName();
             
-            if($resumer == NULL)
+            if($resumer == '')
             {
-                $user->setResume($resumer);
+                $user->setPresenceResumer(0);
             }
             
-            if($imagePayement == NULL)
+            if($imagePayement == '')
             {
-                $user->setImagePayement($imagePayement);
+                $user->setPresenceImagePayement(0);
             }
 
             else {
@@ -56,11 +56,6 @@ class RegistrationController extends AbstractController
                 
                 $nouveauNomResumer = $uploaderService->uploader($resumer);
                 $nouveauNomImage = $uploaderService->uploader($imagePayement);
-
-                
-                $user
-                ->setResume($nouveauNomResumer)
-                ->setImagePayement($nouveauNomImage);
 
                 $file_entity->setNouveauNonFichier($nouveauNomResumer);
                 $file_entity->setNomFichier($nomFichier);
