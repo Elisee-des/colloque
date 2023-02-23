@@ -11,6 +11,7 @@ use App\Security\LoginAuthenticator;
 use App\Service\SenderMailService;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,51 +29,41 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $users = $userRepository->findAll();
             $numero = count($users);
-            $numeroUser = $numero+1;
-            
+            $numeroUser = $numero + 1;
+
             $passwordClaire = $request->get("inscription")["password"]["first"];
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
             $nomFichier = $resumer->getClientOriginalName();
             $nomImage = $imagePayement->getClientOriginalName();
-            
-            if($resumer == '')
-            {
-                $user->setPresenceResumer(0);
-            }
-            
-            if($imagePayement == '')
-            {
-                $user->setPresenceImagePayement(0);
-            }
 
-            else {
-                $file_entity = new File();
-                $file_image = new ImageFile();
-                
-                $nouveauNomResumer = $uploaderService->uploader($resumer);
-                $nouveauNomImage = $uploaderService->uploader($imagePayement);
+            $file_entity = new File();
+            $file_image = new ImageFile();
 
-                $file_entity->setNouveauNonFichier($nouveauNomResumer);
-                $file_entity->setNomFichier($nomFichier);
-                $file_entity->setDateCreation(new \DateTime());
-                $file_entity->setUser($user);
+            $nouveauNomResumer = $uploaderService->uploader($resumer);
+            $nouveauNomImage = $uploaderService->uploader($imagePayement);
 
-                $file_image->setNouveauNomFichier($nouveauNomImage);
-                $file_image->setNomFichier($nomImage);
-                $file_image->setDateCreation(new \DateTime());
-                $file_image->setUser($user);
-                ;
-            }
-            
+            $file_entity->setNouveauNonFichier($nouveauNomResumer);
+            $file_entity->setNomFichier($nomFichier);
+            $file_entity->setDateCreation(new \DateTime());
+            $file_entity->setUser($user);
+
+            $file_image->setNouveauNomFichier($nouveauNomImage);
+            $file_image->setNomFichier($nomImage);
+            $file_image->setDateCreation(new \DateTime());
+            $file_image->setUser($user);
+
             $user->setPassword($password)
-            ->setNumero($numeroUser);
+                ->setNumero($numeroUser);
+            $user->setPresenceResumer(true);
+            $user->setPresenceImagePayement(true);
+
             // encode the plain password
-            
+
             $entityManager->persist($user);
             $entityManager->persist($file_entity);
             $entityManager->persist($file_image);
@@ -83,7 +74,7 @@ class RegistrationController extends AbstractController
                 'Vous avez reussi votre inscription'
             );
             // do anything else you need here, like send an email
-            
+
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,

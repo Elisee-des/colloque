@@ -5,7 +5,7 @@
 
 {% block page %}
 	<div class="pagetitle">
-		<h1>Parametre du compte</h1>
+		<h1>Tableau de bord</h1>
 		<nav>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item">
@@ -130,7 +130,7 @@
 											{% else %}
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Renvoyez votre resumer</label>
 											<div class="col-md-8 col-lg-9">
-												<a href="{{ path("user_editer_resumer") }}" class="btn btn-primary btn-sm">Commencer</a>
+												<a href="{{ path("user_editer_resumer", {"id": app.user.file.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
 											</div>
 											{% endif %}
 										</div>
@@ -142,12 +142,12 @@
 											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'image de payement</label>
                                         {% endif %}
 											<div class="col-md-8 col-lg-9">
-												<a href="{{ path("user_editer_imagePayement") }}" class="btn btn-primary btn-sm">Commencer</a>
+												<a href="{{ path("user_editer_imagePayement", {"id": app.user.imageFile.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
 											</div>
 										</div>
 
 										<div class="text-center">
-											<input type="submit" name="modifierInformation" class="btn btn-primary" value="Sauvegarder mes nouvelles informations"/>
+											<input type="submit" name="modifierInformation" class="btn btn-primary" onclick="return confirm('Etes vous sûr de vouloir modifier votre nom et prenom ?')" value="Sauvegarder mes nouvelles informations"/>
 										</div>
 									</form>
 									<!-- End Profile Edit Form -->
@@ -175,7 +175,7 @@
 										</div>
 
 										<div class="text-center">
-											<input type="submit" name="Modifier" class="btn btn-primary" value="Changer mon mot de passe" />
+											<input type="submit" name="Modifier" class="btn btn-primary" onclick="return confirm('Etes vous sur de vouloir modifier votre mot de passe ?')" value="Changer mon mot de passe" />
 										</div>
 									</form>
 									<!-- End Change Password Form -->

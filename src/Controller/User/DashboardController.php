@@ -2,9 +2,12 @@
 
 namespace App\Controller\User;
 
+use App\Entity\File;
 use App\Form\User\EditeImagePayementType;
 use App\Form\User\EditerAxeType;
 use App\Form\User\EditeResumeType;
+use App\Repository\FileRepository;
+use App\Repository\ImageFileRepository;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,26 +60,31 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/editer/resumer', name: 'editer_resumer')]
-    public function editerResumer(Request $request, EntityManagerInterface $em, UploaderService $uploaderService): Response
+    #[Route('/editer/resumer/{id}', name: 'editer_resumer')]
+    public function editerResumer(Request $request, EntityManagerInterface $em, UploaderService $uploaderService, $id, FileRepository $fileRepository): Response
     {
         /**
          * @var User
          */
 
         $user = $this->getUser();
+        $resumerFichier = $fileRepository->find($id);
 
         $form = $this->createForm(EditeResumeType::class);
 
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) { 
             $fichier = $form->get("resumeFile")->getData();
-            $resumerFichier = $uploaderService->uploader($fichier);
+            $nouveauxNom = $uploaderService->uploader($fichier);
+            $nomFichier = $fichier->getClientOriginalName();
             
-            $user->setResume($resumerFichier);
+            $resumerFichier->setNomFichier($nomFichier)
+                ->setNouveauNonFichier($nouveauxNom);
 
-            $em->persist($user);
+            $resumerFichier->setUser($this->getUser());
+            
+            $em->persist($resumerFichier);
             $em->flush();
 
             $this->addFlash(
@@ -127,14 +135,16 @@ class DashboardController extends AbstractController
     }
 
     
-    #[Route('/editer/imagePayement', name: 'editer_imagePayement')]
-    public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em): Response
+    #[Route('/editer/imagePayement/{id}', name: 'editer_imagePayement')]
+    public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em, $id, ImageFileRepository $imageFileRepository): Response
     {
         /**
          * @var User
          */
 
-         $user = $this->getUser();
+        $user = $this->getUser();
+
+        $imagePayement = $imageFileRepository->find($id);
 
         $form = $this->createForm(EditeImagePayementType::class);
 
@@ -143,9 +153,13 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) { 
             $fichier = $form->get("imagePayementFile")->getData();
             $imagePayementFichier = $uploaderService->uploader($fichier);
+            $nomFichier = $fichier->getClientOriginalName();
             
-            $user->setImagePayement($imagePayementFichier);
+            $imagePayement->setNomFichier($nomFichier)
+                ->setNouveauNomFichier($imagePayementFichier);
 
+            $imagePayement->setUser($this->getUser());
+            
             $em->persist($user);
             $em->flush();
 
