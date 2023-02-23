@@ -39,6 +39,24 @@ class ExpositaireRepository extends ServiceEntityRepository
         }
     }
 
+    public function getEtat()
+    {
+        $connexion = $this->_em->getConnection();
+
+        $requete = "SELECT COUNT(expositaire.id) total FROM expositaire";
+        $resultat = $connexion->executeQuery($requete);
+        $data = $resultat->fetchAllAssociative();
+
+        $requete1 = "SELECT COUNT(user.id) total FROM user";
+        $resultat1 = $connexion->executeQuery($requete1);
+        $data1 = $resultat1->fetchAllAssociative();
+
+        return [
+            "etat" => $data,
+            "etat1" => $data1,
+        ];
+    }
+
 //    /**
 //     * @return Expositaire[] Returns an array of Expositaire objects
 //     */
