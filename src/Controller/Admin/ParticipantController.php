@@ -23,8 +23,8 @@ class ParticipantController extends AbstractController
         $users = $userRepository->findAll();
         foreach($users as $user)
         {
-            $resumer = $user->isPresenceResumer();
-            if($resumer == '')
+            $resumer = $user->getResumer();
+            if($resumer == 'rien')
             {
                 $participants[] = $user;
             }
@@ -113,8 +113,8 @@ class ParticipantController extends AbstractController
             $participants = $userRepository->findAll();
             foreach($participants as $participant)
             {
-                $resumer = $participant->isPresenceResumer();
-                if($resumer == '')
+                $resumer = $participant->getResumer();
+                if($resumer == 'rien')
                 {
                     $participats[] = $participant;
                 }
