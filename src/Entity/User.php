@@ -48,9 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $contact = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $numero = null;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Email::class, orphanRemoval: true)]
     private Collection $emails;
 
@@ -75,10 +72,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $poster = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $resumerNouveauNom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagePayementNouveauNom = null;
 
     public function __construct()
@@ -238,18 +235,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setContact(?string $contact): self
     {
         $this->contact = $contact;
-
-        return $this;
-    }
-
-    public function getNumero(): ?int
-    {
-        return $this->numero;
-    }
-
-    public function setNumero(?int $numero): self
-    {
-        $this->numero = $numero;
 
         return $this;
     }

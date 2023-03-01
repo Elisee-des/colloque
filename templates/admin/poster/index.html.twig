@@ -50,7 +50,6 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
 					<th scope="col">Nom</th>
 					<th scope="col">Prenom</th>
 					<th scope="col">Date</th>
@@ -61,7 +60,6 @@
 				{% for poster in posters %}
 					{% if poster.resumer != "rien" %}
 						<tr>
-						<th scope="row">{{ poster.numero }}</th>
 						<td>{{ poster.nom }}</td>
 						<td>{{ poster.prenom }}</td>
 						<td>{{ poster.dateCreation|date("d-m-Y") }}</td>

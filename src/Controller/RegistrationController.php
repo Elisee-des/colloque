@@ -38,8 +38,7 @@ class RegistrationController extends AbstractController
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
-            $vraiNomResumer = $resumer->getClientOriginalName();
-            $vraiNomImage = $imagePayement->getClientOriginalName();
+            
             
 
             if ($resumer == '' && $imagePayement == '') {
@@ -49,7 +48,6 @@ class RegistrationController extends AbstractController
                 $user->setImagePayementNouveauNom("rien");
 
                 $user->setPassword($password)
-                    ->setNumero($numeroUser)
                     ;
 
                     $entityManager->persist($user);
@@ -62,12 +60,12 @@ class RegistrationController extends AbstractController
             }
 
             elseif ($resumer != '' && $imagePayement == '') {
+                $vraiNomResumer = $resumer->getClientOriginalName();
                 $nouveauNomResumer = $uploaderService->uploader($resumer);
 
                 $user->setImagePayment("rien");
 
                 $user->setPassword($password)
-                    ->setNumero($numeroUser)
                     ->setResumer($nouveauNomResumer)
                     ->setResumerNouveauNom($vraiNomResumer)
                     ;
@@ -82,12 +80,11 @@ class RegistrationController extends AbstractController
             }
 
             elseif ($resumer == '' && $imagePayement != '') {
-
+            $vraiNomImage = $imagePayement->getClientOriginalName();
                 $nouveauNomImage = $uploaderService->uploader($imagePayement);
                 $user->setResumer("rien");
 
                 $user->setPassword($password)
-                    ->setNumero($numeroUser)
                     ->setImagePayment($nouveauNomImage)
                     ->setImagePayementNouveauNom($vraiNomImage)
                     ->setResumerNouveauNom("rien")
@@ -104,12 +101,13 @@ class RegistrationController extends AbstractController
             
             
             elseif ($resumer != '' && $imagePayement != '') {
+            $vraiNomImage = $imagePayement->getClientOriginalName();
+            $vraiNomResumer = $resumer->getClientOriginalName();
 
                 $nouveauNomImage = $uploaderService->uploader($imagePayement);
                 $nouveauNomResumer = $uploaderService->uploader($resumer);
 
                 $user->setPassword($password)
-                    ->setNumero($numeroUser)
                     ->setResumer($nouveauNomResumer)
                     ->setImagePayment($nouveauNomImage)
                     ->setResumerNouveauNom($vraiNomResumer)

@@ -48,7 +48,6 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prenom</th>
                     <th scope="col">Date</th>
@@ -58,7 +57,6 @@
                 <tbody>
                   {% for user in users %}
                   <tr>
-                    <th scope="row">{{ user.numero }}</th>
                     <td>{{ user.nom }}</td>
                     <td>{{ user.prenom }}</td>
                     <td>{{ user.dateCreation|date("d-m-Y") }}</td>
