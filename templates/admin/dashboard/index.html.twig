@@ -89,12 +89,12 @@
                         {% for user in users %}
                       <tr>
                         <td><strong>{{user.nom}} {{user.prenom}}</strong></td>
-                        {% if user.resumer == '' %}
+                        {% if user.resumer == "rien" %}
                         <td><span class="badge bg-danger">non</span></td>
                         {% else %}
                         <td><span class="badge bg-success">oui</span></td>
                         {% endif %}
-                        {% if user.imagePayment != '' %}
+                        {% if user.imagePayment == "rien" %}
                         <td><span class="badge bg-success">Payez</span></td>
                         {% else %}
                         <td><span class="badge bg-danger">Non payé</span></td>

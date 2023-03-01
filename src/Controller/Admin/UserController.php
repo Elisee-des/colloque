@@ -61,6 +61,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
+            $role = $request->get("edition_compte_inscription")["roles"][0];
+
+            $user->setRoles([$role]);
             
             $em->persist($user);
             $em->flush();

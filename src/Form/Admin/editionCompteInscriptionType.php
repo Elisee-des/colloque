@@ -39,13 +39,15 @@ class editionCompteInscriptionType extends AbstractType
         ])
         ->add('roles', ChoiceType::class, [
             "choices" => [
-                "Utilisateur" => "ROLE_USER",
-                "Administrateur" => "ROLE_ADMIN",
-                "Desactiviter" => "ISDESACTIVED"
+                "Rôle Utilisateur" => "ROLE_USER",
+                "Rôle Administrateur" => "ROLE_ADMIN",
             ],
-            "expanded" => true,
+            "attr" => [
+                "class" => "form-control mb-3"
+            ],
+            // "expanded" => true,
             "multiple" => true,
-            "label" => "Definir le role"
+            "label" => "Definir le role de cet utilisateur"
         ])
         
         ->add('axe', EntityType::class, [
