@@ -89,17 +89,17 @@
                         {% for user in users %}
                       <tr>
                         <td><strong>{{user.nom}} {{user.prenom}}</strong></td>
-                        {% if user.presenceResumer == 0 %}
+                        {% if user.resumer == '' %}
                         <td><span class="badge bg-danger">non</span></td>
                         {% else %}
                         <td><span class="badge bg-success">oui</span></td>
                         {% endif %}
-                        {% if user.presenceImagePayement != 0 %}
+                        {% if user.imagePayment != '' %}
                         <td><span class="badge bg-success">Payez</span></td>
                         {% else %}
                         <td><span class="badge bg-danger">Non payé</span></td>
                         {% endif %}
-                        <td><a href="" class="btn btn-outline-primary btn btn-sm">Details</a></td>
+                        <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" class="btn btn-outline-primary btn btn-sm">Details</a></td>
                       </tr>
                         {% endfor %}
                     </tbody>

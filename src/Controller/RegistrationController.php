@@ -38,41 +38,87 @@ class RegistrationController extends AbstractController
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
-            $nomFichier = $resumer->getClientOriginalName();
-            $nomImage = $imagePayement->getClientOriginalName();
 
-            $file_entity = new File();
-            $file_image = new ImageFile();
+            if ($resumer == '' && $imagePayement == '') {
+                $user->setResumer('rien');
+                $user->setImagePayment("rien");
 
-            $nouveauNomResumer = $uploaderService->uploader($resumer);
-            $nouveauNomImage = $uploaderService->uploader($imagePayement);
+                $user->setPassword($password)
+                    ->setNumero($numeroUser)
+                    ;
 
-            $file_entity->setNouveauNonFichier($nouveauNomResumer);
-            $file_entity->setNomFichier($nomFichier);
-            $file_entity->setDateCreation(new \DateTime());
-            $file_entity->setUser($user);
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+        
+                    $this->addFlash(
+                        'success',
+                        'Vous avez reussi votre inscription'
+                    );
+            }
 
-            $file_image->setNouveauNomFichier($nouveauNomImage);
-            $file_image->setNomFichier($nomImage);
-            $file_image->setDateCreation(new \DateTime());
-            $file_image->setUser($user);
+            elseif ($resumer != '' && $imagePayement == '') {
+                $nouveauNomResumer = $uploaderService->uploader($resumer);
 
-            $user->setPassword($password)
-                ->setNumero($numeroUser);
-            $user->setPresenceResumer(true);
-            $user->setPresenceImagePayement(true);
+                $user->setImagePayment("rien");
+
+                $user->setPassword($password)
+                    ->setNumero($numeroUser)
+                    ->setResumer($nouveauNomResumer)
+                    ;
+
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+        
+                    $this->addFlash(
+                        'success',
+                        'Vous avez reussi votre inscription'
+                    );
+            }
+
+            elseif ($resumer == '' && $imagePayement != '') {
+
+                $nouveauNomImage = $uploaderService->uploader($imagePayement);
+                $user->setResumer("rien");
+
+                $user->setPassword($password)
+                    ->setNumero($numeroUser)
+                    ->setImagePayment($nouveauNomImage)
+                    ;
+
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+        
+                    $this->addFlash(
+                        'success',
+                        'Vous avez reussi votre inscription'
+                    );
+            }
+            
+            
+            elseif ($resumer != '' && $imagePayement != '') {
+
+                $nouveauNomImage = $uploaderService->uploader($imagePayement);
+                $nouveauNomResumer = $uploaderService->uploader($resumer);
+
+                $user->setPassword($password)
+                    ->setNumero($numeroUser)
+                    ->setResumer($nouveauNomResumer)
+                    ->setImagePayment($nouveauNomImage)
+                    ;
+
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+        
+                    $this->addFlash(
+                        'success',
+                        'Vous avez reussi votre inscription'
+                    );
+            }
+
 
             // encode the plain password
 
-            $entityManager->persist($user);
-            $entityManager->persist($file_entity);
-            $entityManager->persist($file_image);
-            $entityManager->flush();
 
-            $this->addFlash(
-                'success',
-                'Vous avez reussi votre inscription'
-            );
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(

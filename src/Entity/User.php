@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -58,9 +57,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $LastConnexion = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isAdmin = null;
-
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?File $file = null;
 
@@ -70,11 +66,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class, orphanRemoval: true)]
     private Collection $messages;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $presenceResumer = null;
+    #[ORM\Column(length: 255)]
+    private ?string $resumer = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $presenceImagePayement = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imagePayment = null;
 
     public function __construct()
     {
@@ -291,18 +287,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(?bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
     public function getFile(): ?File
     {
         return $this->file;
@@ -367,26 +351,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isPresenceResumer(): ?bool
+    public function getResumer(): ?string
     {
-        return $this->presenceResumer;
+        return $this->resumer;
     }
 
-    public function setPresenceResumer(?bool $presenceResumer): self
+    public function setResumer(string $resumer): self
     {
-        $this->presenceResumer = $presenceResumer;
+        $this->resumer = $resumer;
 
         return $this;
     }
 
-    public function isPresenceImagePayement(): ?bool
+    public function getImagePayment(): ?string
     {
-        return $this->presenceImagePayement;
+        return $this->imagePayment;
     }
 
-    public function setPresenceImagePayement(?bool $presenceImagePayement): self
+    public function setImagePayment(string $imagePayment): self
     {
-        $this->presenceImagePayement = $presenceImagePayement;
+        $this->imagePayment = $imagePayment;
 
         return $this;
     }

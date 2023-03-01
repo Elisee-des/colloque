@@ -73,20 +73,20 @@
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Resumer déposer ?</div>
-										{% if app.user.presenceResumer != 0 %}
-											<div class="col-lg-9 col-md-8">OUI</div>
-										{% else %}
+										{% if app.user.resumer == "rien" %}
 											<div class="col-lg-9 col-md-8">Aucun</div>
+										{% else %}
+											<div class="col-lg-9 col-md-8">OUI</div>
 										{% endif %}
 
 									</div>
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">A payer</div>
-										{% if app.user.presenceImagePayement != 0 %}
-											<div class="col-lg-9 col-md-8">OUI</div>
-										{% else %}
+										{% if app.user.imagePayment == "rien" %}
 											<div class="col-lg-9 col-md-8">Non, pas encore</div>
+										{% else %}
+											<div class="col-lg-9 col-md-8">OUI</div>
 										{% endif %}
 									</div>
 
@@ -113,37 +113,39 @@
 										</div>
 
 										<div class="row mb-3">
-                                        
-											{% if app.user.presenceImagePayement != 0 %}
-											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'axe</label>
-											<div class="col-md-8 col-lg-9">
-												<a href="{{ path("user_editer_axe") }}" class="btn btn-primary btn-sm">Editer</a>
-											</div>
-                                        {% else %}
-											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas d'axe</label>
-                                        {% endif %}
+
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'axe</label>
+												<div class="col-md-8 col-lg-9">
+													<a href="{{ path("user_editer_axe") }}" class="btn btn-primary btn-sm">Editer</a>
+												</div>
 										</div>
 
 										<div class="row mb-3">
-											{% if app.user.presenceResumer == 0  %}
-												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas de resumer déja envoyé</label>
+											{% if app.user.resumer == "rien"  %}
+												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Envoyez un resumé</label>
+												<div class="col-md-8 col-lg-9">
+													<a href="{{ path("user_editer_resumer", {"id": app.user.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
+												</div>
 											{% else %}
-												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Renvoyez votre resumer</label>
-											<div class="col-md-8 col-lg-9">
-												<a href="{{ path("user_editer_resumer", {"id": app.user.file.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
-											</div>
+												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Renvoyez un resumé</label>
+												<div class="col-md-8 col-lg-9">
+													<a href="{{ path("user_editer_resumer", {"id": app.user.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
+												</div>
 											{% endif %}
 										</div>
 
 										<div class="row mb-3">
-                                        {% if app.user.presenceImagePayement == 0 %}
-											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Envoyez/Renvoyez l'image de payement</label>
-                                        {% else %}
-											<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'image de payement</label>
-                                        {% endif %}
-											<div class="col-md-8 col-lg-9">
-												<a href="{{ path("user_editer_imagePayement", {"id": app.user.imageFile.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
+											{% if app.user.imagePayment == "rien" %}
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Envoyez une image de payement</label>
+												<div class="col-md-8 col-lg-9">
+												<a href="{{ path("user_editer_imagePayement", {"id": app.user.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
 											</div>
+											{% else %}
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'image de payement</label>
+											<div class="col-md-8 col-lg-9">
+												<a href="{{ path("user_editer_imagePayement", {"id": app.user.id}) }}" class="btn btn-primary btn-sm">Commencer</a>
+											</div>
+											{% endif %}
 										</div>
 
 										<div class="text-center">
@@ -175,7 +177,7 @@
 										</div>
 
 										<div class="text-center">
-											<input type="submit" name="Modifier" class="btn btn-primary" onclick="return confirm('Etes vous sur de vouloir modifier votre mot de passe ?')" value="Changer mon mot de passe" />
+											<input type="submit" name="Modifier" class="btn btn-primary" onclick="return confirm('Etes vous sur de vouloir modifier votre mot de passe ?')" value="Changer mon mot de passe"/>
 										</div>
 									</form>
 									<!-- End Change Password Form -->

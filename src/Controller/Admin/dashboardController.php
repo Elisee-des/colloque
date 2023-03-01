@@ -24,13 +24,13 @@ class dashboardController extends AbstractController
         $compt2 = 0;
 
         foreach ($users as $user) {
-            if ($user->isPresenceResumer() != NULL) {
+            if ($user->getResumer() != '') {
                 $compt = $compt + 1;
             }
         }
 
         foreach ($users2 as $user) {
-            if ($user->isPresenceImagePayement() != NULL) {
+            if ($user->getImagePayment() != '') {
                 $compt2 = $compt2 + 1;
             }
         }
