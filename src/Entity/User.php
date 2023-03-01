@@ -75,6 +75,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?bool $poster = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $resumerNouveauNom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imagePayementNouveauNom = null;
+
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
@@ -386,6 +392,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPoster(bool $poster): self
     {
         $this->poster = $poster;
+
+        return $this;
+    }
+
+    public function getResumerNouveauNom(): ?string
+    {
+        return $this->resumerNouveauNom;
+    }
+
+    public function setResumerNouveauNom(string $resumerNouveauNom): self
+    {
+        $this->resumerNouveauNom = $resumerNouveauNom;
+
+        return $this;
+    }
+
+    public function getImagePayementNouveauNom(): ?string
+    {
+        return $this->imagePayementNouveauNom;
+    }
+
+    public function setImagePayementNouveauNom(string $imagePayementNouveauNom): self
+    {
+        $this->imagePayementNouveauNom = $imagePayementNouveauNom;
 
         return $this;
     }

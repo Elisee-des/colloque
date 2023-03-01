@@ -164,11 +164,11 @@ class UserController extends AbstractController
 
 
     #[Route('/telechargement/resumer/{id}', name: 'telecharger_resumer')]
-    public function telechargementFichier($id, FileRepository $fileRepository): Response
+    public function telechargementResumer($id, UserRepository $userRepository): Response
     {
-        $resumer = $fileRepository->find($id);
-        $nomResusumer = $resumer->getNomFichier();
-        $nouveauNonResumer = $resumer->getNouveauNonFichier();
+        $user = $userRepository->find($id);
+        $nouveauNonResumer = $user->getResumer();
+        $nomResusumer = $user->getResumerNouveauNom();
 
         $file_with_path = $this->getParameter("images_directory") . "/" . $nouveauNonResumer;
         $response = new BinaryFileResponse( $file_with_path );
@@ -178,16 +178,16 @@ class UserController extends AbstractController
     }
 
     #[Route('/telechargement/image-payement/{id}', name: 'telecharger_image_payement')]
-    public function telechargementImagePayement($id, ImageFileRepository $imageFileRepository): Response
+    public function telechargementImagePayement($id, UserRepository $userRepository): Response
     {
-        $image = $imageFileRepository->find($id);
-        $nomFichier = $image->getNomFichier();
-        $nouveauNomFichier = $image->getNouveauNomFichier();
+        $user = $userRepository->find($id);
+        $nouveauNonImage = $user->getImagePayment();
+        $nomImage = $user->getImagePayementNouveauNom();
 
-        $file_with_path = $this->getParameter("images_directory") . "/" . $nouveauNomFichier;
+        $file_with_path = $this->getParameter("images_directory") . "/" . $nouveauNonImage;
         $response = new BinaryFileResponse( $file_with_path );
         $response->headers->set ( 'Content-Type', 'text/plain' );
-        $response->setContentDisposition ( ResponseHeaderBag::DISPOSITION_ATTACHMENT, $nomFichier );
+        $response->setContentDisposition ( ResponseHeaderBag::DISPOSITION_ATTACHMENT, $nomImage );
         return $response;
     }
 }

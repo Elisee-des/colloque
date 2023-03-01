@@ -38,10 +38,15 @@ class RegistrationController extends AbstractController
             $password = $passwordhasher->hashPassword($user, $passwordClaire);
             $resumer = $form->get("resumeFile")->getData();
             $imagePayement = $form->get("imagePayementFile")->getData();
+            $vraiNomResumer = $resumer->getClientOriginalName();
+            $vraiNomImage = $imagePayement->getClientOriginalName();
+            
 
             if ($resumer == '' && $imagePayement == '') {
                 $user->setResumer('rien');
                 $user->setImagePayment("rien");
+                $user->setResumerNouveauNom("rien");
+                $user->setImagePayementNouveauNom("rien");
 
                 $user->setPassword($password)
                     ->setNumero($numeroUser)
@@ -64,6 +69,7 @@ class RegistrationController extends AbstractController
                 $user->setPassword($password)
                     ->setNumero($numeroUser)
                     ->setResumer($nouveauNomResumer)
+                    ->setResumerNouveauNom($vraiNomResumer)
                     ;
 
                     $entityManager->persist($user);
@@ -83,6 +89,8 @@ class RegistrationController extends AbstractController
                 $user->setPassword($password)
                     ->setNumero($numeroUser)
                     ->setImagePayment($nouveauNomImage)
+                    ->setImagePayementNouveauNom($vraiNomImage)
+                    ->setResumerNouveauNom("rien")
                     ;
 
                     $entityManager->persist($user);
@@ -104,6 +112,9 @@ class RegistrationController extends AbstractController
                     ->setNumero($numeroUser)
                     ->setResumer($nouveauNomResumer)
                     ->setImagePayment($nouveauNomImage)
+                    ->setResumerNouveauNom($vraiNomResumer)
+                    ->setImagePayementNouveauNom($vraiNomImage)
+
                     ;
 
                     $entityManager->persist($user);
