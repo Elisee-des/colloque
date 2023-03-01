@@ -95,9 +95,9 @@
                         <td><span class="badge bg-success">oui</span></td>
                         {% endif %}
                         {% if user.imagePayment == "rien" %}
-                        <td><span class="badge bg-success">Payez</span></td>
-                        {% else %}
                         <td><span class="badge bg-danger">Non payé</span></td>
+                        {% else %}
+                        <td><span class="badge bg-success">Payez</span></td>
                         {% endif %}
                         <td><a href="{{ path("admin_user_detail", {"id": user.id}) }}" class="btn btn-outline-primary btn btn-sm">Details</a></td>
                       </tr>

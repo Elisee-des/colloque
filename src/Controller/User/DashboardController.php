@@ -8,6 +8,7 @@ use App\Form\User\EditerAxeType;
 use App\Form\User\EditeResumeType;
 use App\Repository\FileRepository;
 use App\Repository\ImageFileRepository;
+use App\Repository\UserRepository;
 use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,30 +62,30 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/editer/resumer/{id}', name: 'editer_resumer')]
-    public function editerResumer(Request $request, EntityManagerInterface $em, UploaderService $uploaderService, $id, FileRepository $fileRepository): Response
+    public function editerResumer(Request $request, EntityManagerInterface $em, UploaderService $uploaderService, $id, UserRepository $userRepository): Response
     {
         /**
          * @var User
          */
 
         $user = $this->getUser();
-        $resumerFichier = $fileRepository->find($id);
+        $user = $userRepository->find($id);
 
+        
         $form = $this->createForm(EditeResumeType::class);
-
+        
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) { 
             $fichier = $form->get("resumeFile")->getData();
             $nouveauxNom = $uploaderService->uploader($fichier);
             $nomFichier = $fichier->getClientOriginalName();
             
-            $resumerFichier->setNomFichier($nomFichier)
-                ->setNouveauNonFichier($nouveauxNom);
+            $user->setResumer($nouveauxNom)
+                ->setResumerNouveauNom($nomFichier);
 
-            $resumerFichier->setUser($this->getUser());
             
-            $em->persist($resumerFichier);
+            $em->persist($user);
             $em->flush();
 
             $this->addFlash(
@@ -97,6 +98,45 @@ class DashboardController extends AbstractController
         }
 
         return $this->render('user/dashboard/editResumer.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    #[Route('/editer/imagePayement/{id}', name: 'editer_imagePayement')]
+    public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em, $id, UserRepository $userRepository): Response
+    {
+        /**
+         * @var User
+         */
+
+         $user = $this->getUser();
+         $user = $userRepository->find($id);
+
+        $form = $this->createForm(EditeImagePayementType::class);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+            $fichier = $form->get("imagePayementFile")->getData();
+            $imagePayementFichier = $uploaderService->uploader($fichier);
+            $nomFichier = $fichier->getClientOriginalName();
+            
+            $user->setImagePayment($imagePayementFichier)
+                ->setImagePayementNouveauNom($nomFichier);
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Vous avez modifier avec success votre image de payement'
+            );
+
+            return $this->redirectToRoute('user_dashboard');
+
+        }
+
+        return $this->render('user/dashboard/imagePayement.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -134,48 +174,6 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    
-    #[Route('/editer/imagePayement/{id}', name: 'editer_imagePayement')]
-    public function editerImagePayement(Request $request, UploaderService $uploaderService, EntityManagerInterface $em, $id, ImageFileRepository $imageFileRepository): Response
-    {
-        /**
-         * @var User
-         */
-
-        $user = $this->getUser();
-
-        $imagePayement = $imageFileRepository->find($id);
-
-        $form = $this->createForm(EditeImagePayementType::class);
-
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
-            $fichier = $form->get("imagePayementFile")->getData();
-            $imagePayementFichier = $uploaderService->uploader($fichier);
-            $nomFichier = $fichier->getClientOriginalName();
-            
-            $imagePayement->setNomFichier($nomFichier)
-                ->setNouveauNomFichier($imagePayementFichier);
-
-            $imagePayement->setUser($this->getUser());
-            
-            $em->persist($user);
-            $em->flush();
-
-            $this->addFlash(
-                'success',
-                'Vous avez modifier avec success votre image de payement'
-            );
-
-            return $this->redirectToRoute('user_dashboard');
-
-        }
-
-        return $this->render('user/dashboard/imagePayement.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 
     #[Route('/editer/motdepasse', name: 'editer_password')]
     public function editerPassword(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHash): Response
