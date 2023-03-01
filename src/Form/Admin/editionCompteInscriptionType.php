@@ -6,6 +6,7 @@ use App\Entity\Axe;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -35,6 +36,16 @@ class editionCompteInscriptionType extends AbstractType
             "attr" => [
                 "class" => "form-control mb-3"
             ]
+        ])
+        ->add('roles', ChoiceType::class, [
+            "choices" => [
+                "Utilisateur" => "ROLE_USER",
+                "Administrateur" => "ROLE_ADMIN",
+                "Desactiviter" => "ISDESACTIVED"
+            ],
+            "expanded" => true,
+            "multiple" => true,
+            "label" => "Definir le role"
         ])
         
         ->add('axe', EntityType::class, [

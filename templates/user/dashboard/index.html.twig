@@ -114,10 +114,14 @@
 
 										<div class="row mb-3">
 
-												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier l'axe</label>
+											{% if app.user.poster == 1 %}
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Vous n'avez pas d'axe</label>
+											{% else %}
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Modifier votre axe</label>
 												<div class="col-md-8 col-lg-9">
 													<a href="{{ path("user_editer_axe") }}" class="btn btn-primary btn-sm">Editer</a>
 												</div>
+											{% endif %}
 										</div>
 
 										<div class="row mb-3">

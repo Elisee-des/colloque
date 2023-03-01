@@ -6,6 +6,7 @@ use App\Entity\Axe;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -24,36 +25,41 @@ class InscriptionType extends AbstractType
     {
         $builder
         ->add('nom', TextType::class, [
+            "label" => "Votre nom (*obligatoire)",
                 "attr" => [
                     "class" => "form-control mb-3"
                 ]
         ])
         ->add('prenom', TextType::class, [
+            "label" => "Votre prenom (*obligatoire)",
                 "attr" => [
                     "class" => "form-control mb-3"
                 ]
         ])
             ->add('email', EmailType::class, [
+            "label" => "Votre email (*obligatoire)",
                 "attr" => [
                     "class" => "form-control mb-3"
                 ]
             ])
             ->add('contact', TextType::class, [
+            "label" => "Votre contact (*obligatoire)",
                 "attr" => [
-                    "class" => "form-control mb-3"
+                    "class" => "form-control mb-3",
+                    "placeholder" => "deux contacts"
                 ]
         ])
             ->add('password', RepeatedType::class, [
                 "type" => PasswordType::class,
                 "first_options" => [
-                    "label" => "Nouveau mot de passe",
+                    "label" => "Nouveau mot de passe (*obligatoire)",
                     'attr' => [
                         'autocomplete' => 'new-password',
                         "class" => "form-control mb-3"
                     ]
                 ],
                 "second_options" => [
-                    "label" => "Repeter le mot de passe ",
+                    "label" => "Repeter le mot de passe (*obligatoire)",
                     'attr' => [
                         'autocomplete' => 'new-password',
                         "class" => "form-control mb-3"
@@ -61,18 +67,25 @@ class InscriptionType extends AbstractType
                 ],
                 "invalid_message" => "Mot de passe non identique",
             ])
+            ->add('poster', CheckboxType::class, [
+                "required" => false,
+                "attr" => [
+                    // "class" => "form-control mb-2",
+                ],
+                "label" => "je n'ai pas de communication (coché pour oui, je n'ai pas de communication)",
+            ])
             ->add('axe', EntityType::class, [
+                "label" => "Choisissez votre axe ",
                 "attr" => [
                     "class" => "form-control mb-3"
                 ],
                 "class" => Axe::class,
-                "label" => "Choisissez votre axe",
                 "choice_label" => "nom",
             ])
             ->add('resumeFile', FileType::class, [
                 "required" => false,
                 "mapped" => false,
-                "label"=> "Votre resumer de communication",
+                "label"=> "Votre resumer de communication (*facultatif)",
                 "attr" => [
                     "class" => "form-control"
                 ],
@@ -91,7 +104,7 @@ class InscriptionType extends AbstractType
             ->add('imagePayementFile', FileType::class, [
                 "required" => false,
                 "mapped" => false,
-                "label"=> "Entre une capture d'ecran de votre payement",
+                "label"=> "Entré une capture d'ecran de votre payement (*facultatif)",
                 "attr" => [
                     "class" => "form-control"
                 ],
