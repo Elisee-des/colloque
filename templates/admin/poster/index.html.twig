@@ -59,7 +59,7 @@
 			</thead>
 			<tbody>
 				{% for poster in posters %}
-					{% if poster.presenceResumer != 0 %}
+					{% if poster.resumer != "rien" %}
 						<tr>
 						<th scope="row">{{ poster.numero }}</th>
 						<td>{{ poster.nom }}</td>

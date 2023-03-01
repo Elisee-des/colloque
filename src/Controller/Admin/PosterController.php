@@ -31,10 +31,10 @@ class PosterController extends AbstractController
             $posters = $userRepository->findAll();
             foreach($posters as $poster)
             {
-                $resumer = $poster->isPresenceResumer();
-                if($resumer != 0)
+                $resumer = $poster->getResumer();
+                if($resumer != "rien")
                 {
-                    $posters[] = $poster;
+                    $posterrs[] = $poster;
                 }
             }
 
@@ -48,7 +48,7 @@ class PosterController extends AbstractController
 
             $count = 2;
 
-            foreach ($posters as $poster) {
+            foreach ($posterrs as $poster) {
                     $active_feuille->setCellValue("A" . $count, $poster->getNom());
                     $active_feuille->setCellValue("B" . $count, $poster->getPrenom());
                     $active_feuille->setCellValue("C" . $count, $poster->getContact());
