@@ -207,6 +207,34 @@
 
 			<!-- Template Main JS File -->
 			<script src="{{ asset("asset/assets/js/main.js") }}"></script>
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+			<script>
+			$(document).ready(function () {
+
+				$(".btn-actions").click(function (e) {
+					e.preventDefault()
+					$("#modale").modal("show")
+					let url = $(this).attr("href")
+					$('#modale-body').load(url);
+					});
+				})
+
+			{% for message in app.flashes("success") %}
+				Swal.fire({
+					"icon":"success",
+					"title":"Success",
+					"text":"{{ message }}"
+				})
+			{% endfor %}
+			{% for message in app.flashes("error") %}
+				Swal.fire({
+					"icon":"error",
+					"title":"Erreur",
+					"text":"{{ message }}"
+				})
+			{% endfor %}
+		</script>
 		</body>
 
 	</html>
