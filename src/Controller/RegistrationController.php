@@ -57,6 +57,8 @@ class RegistrationController extends AbstractController
                         'success',
                         'Vous avez reussi votre inscription'
                     );
+
+                    return $this->redirectToRoute('inscription_success');
             }
 
             elseif ($resumer != '' && $imagePayement == '') {
@@ -77,6 +79,10 @@ class RegistrationController extends AbstractController
                         'success',
                         'Vous avez reussi votre inscription'
                     );
+
+                    return $this->redirectToRoute('inscription_success');
+
+
             }
 
             elseif ($resumer == '' && $imagePayement != '') {
@@ -97,6 +103,8 @@ class RegistrationController extends AbstractController
                         'success',
                         'Vous avez reussi votre inscription'
                     );
+
+                    return $this->redirectToRoute('inscription_success');
             }
             
             
@@ -122,6 +130,9 @@ class RegistrationController extends AbstractController
                         'success',
                         'Vous avez reussi votre inscription'
                     );
+
+                    return $this->redirectToRoute('inscription_success');
+
             }
 
 
@@ -139,6 +150,14 @@ class RegistrationController extends AbstractController
 
         return $this->render('admin/inscription/index.html.twig', [
             'formulaireInscription' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/inscription/success', name: 'inscription_success')]
+    public function inscriptionSuccess(): Response
+    {
+
+        return $this->render('admin/inscription/success.html.twig', [
         ]);
     }
 }
