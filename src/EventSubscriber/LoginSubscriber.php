@@ -28,14 +28,14 @@ class LoginSubscriber implements EventSubscriberInterface
          */
 
         $user = $event->getAuthenticationToken()->getUser();
-        $url = $this->request->getCurrentRequest()->server->get('PATH_INFO');
+        // $url = $this->request->getCurrentRequest()->server->get('PATH_INFO');
         $ip = $this->request->getCurrentRequest()->getClientIp();
 
         $historique = new HistoriqueConnexion();
 
         $historique->setNom($user->getNom())
             ->setEmail($user->getEmail())
-            ->setUrl($url)
+            // ->setUrl($url)
             ->setIp($ip)
             ->setDateConnxion(new DateTime())
             ;

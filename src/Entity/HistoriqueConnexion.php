@@ -23,7 +23,7 @@ class HistoriqueConnexion
     #[ORM\Column(length: 255)]
     private ?string $ip = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $url = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
