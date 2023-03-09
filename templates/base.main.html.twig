@@ -74,9 +74,20 @@
           <h1>Colloque international Savoirs endogènes pour le développement durable dans les Suds.</h1>
           {# <h2>We are team of talented designers making websites with Bootstrap</h2> #}
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <div class="container"><a href="{{ path("inscription") }}" class="btn-get-started scrollto">S'inscrire</a>
+            <div class="container">
+            {% if is_granted("ROLE_USER") %}
+            <a href="{{ path("user_dashboard") }}" class="btn-get-started scrollt">Aller dans mon compte</a>
+            <a href="{{ path("app_logout") }}" class="btn-get-started scrollt">Se déconnecter</a>
+            <a href="{{ path("inscription_exposants") }}" class="btn-get-started scrollt">S'inscrire pour exposition</a>
+            {% elseif is_granted("ROLE_ADMIN") %}
+            <a href="{{ path("admin_dashboard") }}" class="btn-get-started scrollt">Aller dans mon compte</a>
+            <a href="{{ path("app_logout") }}" class="btn-get-started scrollt">Se déconnecter</a>
+            {% else %}
+            <a href="{{ path("inscription") }}" class="btn-get-started scrollto">S'inscrire</a>
             <a href="{{ path("app_login") }}" class="btn-get-started scrollt">Se connecter</a>
-            <a href="{{ path("inscription_exposants") }}" class="btn-get-started scrollt">S'inscrire pour exposition</a></div><br><br>
+            <a href="{{ path("inscription_exposants") }}" class="btn-get-started scrollt">S'inscrire pour exposition</a>
+            {% endif %}
+            </div>
             {# <a href="" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> #}
           </div>
         </div>
