@@ -33,7 +33,11 @@ class AdminEnvoyeMailType extends AbstractType
                     "class" => "form-control mb-3"
                 ]
             ])
-            ->add('Envoyez', SubmitType::class)
+            ->add('Envoyez', SubmitType::class, [
+                "attr" => [
+                    "class" => "btn btn-outline-primary mb-3"
+                ]
+            ])
         ;
     }
 

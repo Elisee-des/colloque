@@ -23,8 +23,8 @@
             <div class="row g-3 needs-validation" novalidate>
 
               {{ form(form) }}
+            </div><br>
+              <div><a href="{{ path("admin_user_detail", {"id": user.id}) }}" class="btn btn-outline-dark">Retour</a></div>
             </div>
             </div>
-            </div>
-          
 {% endblock %}

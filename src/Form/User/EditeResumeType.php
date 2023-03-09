@@ -32,7 +32,11 @@ class EditeResumeType extends AbstractType
                 ])
             ]
         ])
-        ->add("Modifier", SubmitType::class)
+        ->add("Modifier", SubmitType::class , [
+            "attr" => [
+                "class" => "btn btn-outline-primary mb-3"
+            ]
+        ])
         ;
     }
 

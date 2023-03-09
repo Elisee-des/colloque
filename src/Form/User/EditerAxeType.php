@@ -22,7 +22,11 @@ class EditerAxeType extends AbstractType
                 "choice_label" => "nom"
             ]
             )
-            ->add('Modifier', SubmitType::class);
+            ->add('Modifier', SubmitType::class,  [
+                "attr" => [
+                    "class" => "btn btn-outline-primary mb-3"
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
