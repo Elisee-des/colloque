@@ -69,8 +69,10 @@
   <section id="hero" class="d-flex align-items-center">
 
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+
+    <div class="content">
+        <div class="row">
+        <div class="col-lg-8 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Colloque international Savoirs endogènes pour le développement durable dans les Suds.</h1>
           {# <h2>We are team of talented designers making websites with Bootstrap</h2> #}
           <div class="d-flex justify-content-center justify-content-lg-start">
@@ -78,28 +80,100 @@
             {% if is_granted("ROLE_USER") %}
             <a href="{{ path("user_dashboard") }}" class="btn-get-started scrollt">Aller dans mon compte</a>
             <a href="{{ path("app_logout") }}" class="btn-get-started scrollt">Se déconnecter</a>
-            <a href="{{ path("inscription_exposants") }}" class="btn-get-started scrollt">S'inscrire pour exposition</a>
             {% elseif is_granted("ROLE_ADMIN") %}
             <a href="{{ path("admin_dashboard") }}" class="btn-get-started scrollt">Aller dans mon compte</a>
             <a href="{{ path("app_logout") }}" class="btn-get-started scrollt">Se déconnecter</a>
             {% else %}
             <a href="{{ path("inscription") }}" class="btn-get-started scrollto">S'inscrire</a>
             <a href="{{ path("app_login") }}" class="btn-get-started scrollt">Se connecter</a>
-            <a href="{{ path("inscription_exposants") }}" class="btn-get-started scrollt">S'inscrire pour exposition</a>
             {% endif %}
             </div>
-            {# <a href="" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> #}
           </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="{{ asset("fichiers/img/unz logo.png") }}" class="img-fluid animated" alt="">
-        </div>
+      </div>
+
+      </div>
       </div>
     </div>
 
   </section><!-- End Hero -->
 
   <main id="main">
+
+      <section id="objectifs" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Université Norbert Zongo</h2>
+        </div>
+
+      <div class="container">
+      <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{{ asset("fichiers/img/unz logo.png") }}" class="img-fluid animated" width="300px" alt="">
+      </div>
+      </div>
+
+      </div>
+    </section><!-- End Services Section -->
+    
+<!-- ======= Pricing Section ======= -->
+    <section id="notice" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Notice</h2>
+        </div>
+
+        <div class="" data-aos="fade-up">
+        {% include 'main/includes/notice.html.twig' %}
+        </div>
+
+      </div>
+    </section>
+<!-- End Pricing Section -->
+
+<!-- ======= Pricing Section ======= -->
+    <section id="notice" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Présentation de Vincent OUATTARA</h2>
+        </div>
+
+        <div class="row portfo" data-aos="fade-up" data-aos-delay="200">
+        {% include 'main/includes/presentation.html.twig' %}
+        </div>
+
+      </div>
+    </section>
+
+    <section id="notice" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Présentation de Ludovic Ouhonyioué Kibora</h2>
+        </div>
+
+        <div class="row portfo" data-aos="fade-up" data-aos-delay="200">
+        {% include 'main/includes/presentation2.html.twig' %}
+        </div>
+
+      </div>
+    </section>
+
+    <section id="notice" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Partenaires</h2>
+        </div>
+
+        <div class="row portfo" data-aos="fade-up" data-aos-delay="200">
+        {% include 'main/includes/partenaires.html.twig' %}
+        </div>
+
+      </div>
+    </section>
 
 
     <!-- ======= About Us Section ======= -->
@@ -275,36 +349,6 @@
     </section><!-- End Pricing Section -->
 
 
-<!-- ======= Pricing Section ======= -->
-    <section id="notice" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Notice</h2>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        {% include 'main/includes/notice.html.twig' %}
-        </div>
-
-      </div>
-    </section>
-<!-- End Pricing Section -->
-
-<!-- ======= Pricing Section ======= -->
-    <section id="notice" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Initiateur du Colloque</h2>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        {% include 'main/includes/initiateur.html.twig' %}
-        </div>
-
-      </div>
-    </section
 
     <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="references" class="faq section-bg">
