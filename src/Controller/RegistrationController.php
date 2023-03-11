@@ -25,6 +25,7 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordHasherInterface $passwordhasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager, UploaderService $uploaderService, UserRepository $userRepository): Response
     {
         $user = new User();
+        
         $form = $this->createForm(InscriptionType::class, $user);
         $form->handleRequest($request);
 
@@ -154,6 +155,8 @@ class RegistrationController extends AbstractController
                 $request
             );
         }
+
+
 
         return $this->render('admin/inscription/index.html.twig', [
             'formulaireInscription' => $form->createView(),

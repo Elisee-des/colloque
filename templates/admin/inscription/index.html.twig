@@ -1,142 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inscription</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+		<title>Inscription</title>
+		<meta content="" name="description">
+		<meta
+		content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="{{ asset("assets/img/favicon.png") }}" rel="icon">
-  <link href="{{ asset("assets/img/apple-touch-icon.png") }}" rel="apple-touch-icon">
-  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+		<!-- Favicons -->
+		<link href="{{ asset("assets/img/favicon.png") }}" rel="icon">
+		<link href="{{ asset("assets/img/apple-touch-icon.png") }}" rel="apple-touch-icon">
+		<link
+		href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  <link href="{{ asset("asset/assets/vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/boxicons/css/boxicons.min.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/quill/quill.snow.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
-  <link href="{{ asset("asset/assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
+		<!-- Google Fonts -->
+		<link href="https://fonts.gstatic.com" rel="preconnect">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<link href="{{ asset("asset/assets/vendor/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
+		<link href="{{ asset("asset/assets/vendor/bootstrap-icons/bootstrap-icons.css") }}" rel="stylesheet">
+		<link href="{{ asset("asset/assets/vendor/boxicons/css/boxicons.min.css") }}" rel="stylesheet">
+		<link href="{{ asset("asset/assets/vendor/quill/quill.snow.css") }}" rel="stylesheet">
+		<link href="{{ asset("asset/assets/vendor/quill/quill.bubble.css") }}" rel="stylesheet">
+		<link href="{{ asset("asset/assets/vendor/remixicon/remixicon.css") }}" rel="stylesheet">
+		<link
+		href="{{ asset("asset/assets/vendor/simple-datatables/style.css") }}" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="{{ asset("asset/assets/css/style.css") }}" rel="stylesheet">
+		<!-- Template Main CSS File -->
+		<link
+		href="{{ asset("asset/assets/css/style.css") }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.5.0
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+	<!-- =======================================================
+			  * Template Name: NiceAdmin - v2.5.0
+			  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+			  * Author: BootstrapMade.com
+			  * License: https://bootstrapmade.com/license/
+			  ======================================================== -->
+	</head>
 
-<body>
+	<body>
 
-  <main>
-    <div class="container">
+		<main>
+			<div class="container">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+				<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-              <div class="d-flex justify-content-center py-4">
-                <a href="{{ path("main_accueil") }}" class="logo d-flex align-items-center w-auto">
-                  <img src="{{ asset("assets/img/logo.png") }}" alt="">
-                  <span class="d-none d-lg-block">Colloque International</span>
-                </a>
-              </div><!-- End Logo -->
+								<div class="d-flex justify-content-center py-4">
+									<a href="{{ path("main_accueil") }}" class="logo d-flex align-items-center w-auto">
+										<img src="{{ asset("assets/img/logo.png") }}" alt="">
+										<span class="d-none d-lg-block">Colloque International</span>
+									</a>
+								</div>
+								<!-- End Logo -->
 
-              <div class="card mb-3">
+								<div class="content">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="card mb-3">
 
-                <div class="card-body">
+												<div class="card-body">
 
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Inscription</h5>
-                    <p class="text-center small">Entrer vos informations</p>
-                  </div>
-                  <div class="row g-3 needs-validation" novalidate>
-  
-                    {{ form(formulaireInscription) }}
-                  
-                    <div class="col-12">
-                    <div class="row mb-3">
-                  {# <label class="col-sm-2 col-form-label">Select</label> #}
-                </div>
-                    <div class="col-12">
-                      <p class="small center mb-0">J'ai deja un compte <a href="{{ path("app_login") }}">Se connecter</a></p>
-                    </div>
-                </div>
-                    {# <div class="col-12">
-                      <button class="btn btn-primary w-100" name="inscription" type="submit" value="">
-                      Inscription
-                    </button> #}
-                    </div>
-                  </div>
+													<div class="pt-4 pb-2">
+														<h5 class="card-title text-center pb-0 fs-4">Inscription pour communication</h5>
+														<p class="text-center small">Entrer vos informations</p>
+													</div>
+													<div class="row g-3 needs-validation" novalidate>
 
-                </div>
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                {# Besoin d'aide ? <a href="https://bootstrapmade.com/">Nous contacter</a> #}
-              {# </div> #}
-              </div>
+														{{ form(formulaireInscription) }}
+
+															<div class="col-12">
+																<div
+																	class="row mb-3">{# <label class="col-sm-2 col-form-label">Select</label> #}
+																</div>
+																<div class="col-12">
+																	<p class="small center mb-0">J'ai deja un compte
+																		<a href="{{ path("app_login") }}">Se connecter</a>
+																	</p>
+																</div>
+															</div>
+
+														</div>
+
+													</div>
+
+												</div>
 
 
-            </div>
-          </div>
-        </div>
+											</div>
+										</div>
 
-      </section>
 
-    </div>
-  </main><!-- End #main -->
+                    <div class="col-lg-6">
+											<div class="card mb-3">
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+												<div class="card-body">
 
-  
-  <!-- Vendor JS Files -->
-  <script src="{{ asset("asset/assets/vendor/apexcharts/apexcharts.min.js") }}"></script>
-  
-  <script src="{{ asset("asset/assets/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/chart.js/chart.umd.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/echarts/echarts.min.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/quill/quill.min.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/simple-datatables/simple-datatables.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/tinymce/tinymce.min.js") }}"></script>
-  <script src="{{ asset("asset/assets/vendor/php-email-form/validate.js") }}"></script>
+													<div class="pt-4 pb-2">
+														<h5 class="card-title text-center pb-0 fs-4">Inscription pour exposition</h5>
+														<p class="text-center small">Entrer vos informations</p>
+													</div>
+													<div class="row g-3 needs-validation" novalidate>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset("asset/assets/js/main.js") }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <form action="{{ path("inscription_exposants") }}" method="post">
+                          <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Text</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                        
+                          <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Submit Button</label>
+                            <div class="col-sm-10">
+                              <button type="submit" class="btn btn-primary">Submit Form</button>
+                            </div>
+                          </div>
 
-  <script>
-			{% for message in app.flashes("success") %}
-				Swal.fire({
-					"icon":"success",
-					"title":"Success",
-					"text":"{{ message }}"
-				})
-			{% endfor %}
-			{% for message in app.flashes("error") %}
-				Swal.fire({
-					"icon":"error",
-					"title":"Erreur",
-					"text":"{{ message }}"
-				})
-			{% endfor %}
-		</script>
+                        </form><!-- End General Form Elements -->
 
-</body>
 
+													</div>
+
+												</div>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</section>
+
+				</div>
+			</main>
+			<!-- End #main -->
+
+			<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+				<i class="bi bi-arrow-up-short"></i>
+			</a>
+
+
+			<!-- Vendor JS Files -->
+			<script src="{{ asset("asset/assets/vendor/apexcharts/apexcharts.min.js") }}"></script>
+
+			<script src="{{ asset("asset/assets/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/chart.js/chart.umd.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/echarts/echarts.min.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/quill/quill.min.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/simple-datatables/simple-datatables.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/tinymce/tinymce.min.js") }}"></script>
+			<script src="{{ asset("asset/assets/vendor/php-email-form/validate.js") }}"></script>
+
+			<!-- Template Main JS File -->
+			<script src="{{ asset("asset/assets/js/main.js") }}"></script>
+			<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+			<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+			<script>
+				{% for message in app.flashes("success") %}
+Swal.fire({"icon": "success", "title": "Success", "text":"{{ message }}"}){% endfor %}{% for message in app.flashes("error") %}Swal.fire({"icon": "error", "title": "Erreur", "text":"{{ message }}"}){% endfor %}
+			</script>
+		</body>
+	</body>
 </html>
