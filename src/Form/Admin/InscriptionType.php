@@ -59,7 +59,7 @@ class InscriptionType extends AbstractType
                     ]
                 ],
                 "second_options" => [
-                    "label" => "Repeter le mot de passe (*obligatoire)",
+                    "label" => "Répétez le mot de passe (*obligatoire)",
                     'attr' => [
                         'autocomplete' => 'new-password',
                         "class" => "form-control mb-3"
@@ -67,13 +67,13 @@ class InscriptionType extends AbstractType
                 ],
                 "invalid_message" => "Mot de passe non identique",
             ])
-            ->add('poster', CheckboxType::class, [
-                "required" => false,
-                "attr" => [
-                    // "class" => "form-control mb-2",
-                ],
-                "label" => "je n'ai pas de communication (coché pour oui, je n'ai pas de communication)",
-            ])
+            // ->add('poster', CheckboxType::class, [
+            //     "required" => false,
+            //     "attr" => [
+            //         // "class" => "form-control mb-2",
+            //     ],
+            //     "label" => "je n'ai pas de communication (coché pour oui, je n'ai pas de communication)",
+            // ])
             ->add('axe', EntityType::class, [
                 "label" => "Choisissez votre axe ",
                 "attr" => [
@@ -85,7 +85,7 @@ class InscriptionType extends AbstractType
             ->add('resumeFile', FileType::class, [
                 "required" => false,
                 "mapped" => false,
-                "label"=> "Votre resumer de communication (*facultatif)",
+                "label"=> "Attachez votre resumé de communication (*obliagtoire)",
                 "attr" => [
                     "class" => "form-control"
                 ],
@@ -104,7 +104,7 @@ class InscriptionType extends AbstractType
             ->add('imagePayementFile', FileType::class, [
                 "required" => false,
                 "mapped" => false,
-                "label"=> "Entré une capture d'ecran de votre payement (*facultatif)",
+                "label"=> "Attachez une capture d'ecran de votre payement (*facultatif)",
                 "attr" => [
                     "class" => "form-control"
                 ],

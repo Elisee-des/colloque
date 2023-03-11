@@ -47,8 +47,8 @@ class RegistrationController extends AbstractController
                 $user->setResumerNouveauNom("rien");
                 $user->setImagePayementNouveauNom("rien");
 
-                $user->setPassword($password)
-                    ;
+                $user->setPassword($password);
+                $user->setPoster(0);
 
                     $entityManager->persist($user);
                     $entityManager->flush();
@@ -70,7 +70,10 @@ class RegistrationController extends AbstractController
                 $user->setPassword($password)
                     ->setResumer($nouveauNomResumer)
                     ->setResumerNouveauNom($vraiNomResumer)
+                    
                     ;
+                $user->setPoster(0);
+
 
                     $entityManager->persist($user);
                     $entityManager->flush();
@@ -95,6 +98,8 @@ class RegistrationController extends AbstractController
                     ->setImagePayementNouveauNom($vraiNomImage)
                     ->setResumerNouveauNom("rien")
                     ;
+                $user->setPoster(0);
+
 
                     $entityManager->persist($user);
                     $entityManager->flush();
@@ -122,6 +127,8 @@ class RegistrationController extends AbstractController
                     ->setImagePayementNouveauNom($vraiNomImage)
 
                     ;
+                $user->setPoster(0);
+
 
                     $entityManager->persist($user);
                     $entityManager->flush();
