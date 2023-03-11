@@ -16,21 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class InscriptionExpositaireController extends AbstractController
 {
     #[Route('/inscription/expositaire', name: 'inscription_exposants')]
-    public function index(Request $request, EntityManagerInterface $em, ExpositaireRepository $expositaireRepository): Response
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
-        $exposants = $expositaireRepository->findAll();
-            $numero = count($exposants);
-            $exposant = $numero+1;
-
-        $expositaire = new Expositaire();
-
-        $form = $this->createForm(InscriptionExpositaireType::class, $expositaire);
-
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
+        if (isset($_POST["inscription_expt"])) {
             
-            $expositaire->setNumero($exposant);
+            dd($request);
+            $expositaire = new Expositaire();
+            
+            $expositaire->setNumero(0);
             $em->persist($expositaire);
             $em->flush();
 
@@ -42,9 +35,14 @@ class InscriptionExpositaireController extends AbstractController
             return $this->redirectToRoute('success_inscription_expositaire');
         }
 
+        $this->addFlash(
+            'error',
+            'Veuillez remplir le formulaire.'
+        );
+
 
         return $this->render('admin/inscription_expositaire/index.html.twig', [
-            'formulaireInscription' => $form->createView()
+            // 'formulaireInscription' => $form->createView()
         ]);
     }
 

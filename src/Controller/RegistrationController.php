@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Expositaire;
 use App\Entity\File;
 use App\Entity\ImageFile;
 use App\Entity\User;
@@ -10,6 +11,7 @@ use App\Repository\UserRepository;
 use App\Security\LoginAuthenticator;
 use App\Service\SenderMailService;
 use App\Service\UploaderService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\PseudoTypes\False_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -143,6 +145,8 @@ class RegistrationController extends AbstractController
 
             }
 
+           
+
 
             // encode the plain password
 
@@ -154,6 +158,40 @@ class RegistrationController extends AbstractController
                 $authenticator,
                 $request
             );
+        }
+
+
+        elseif (isset($_POST["inscription_expt"])) {
+                $expositaire = new Expositaire();
+            
+            $nom = $request->get("nom");
+            $prenom = $request->get("prenom");
+            $email = $request->get("email");
+            $numeroPersonnel = $request->get("numeroPersonnel");
+            $structureNom = $request->get("structureNom");
+            $produit = $request->get("produit");
+            $structureEmail = $request->get("structureEmail");
+
+            
+            $expositaire->setNom($nom);
+            $expositaire->setPrenom($prenom);
+            $expositaire->setEmail($email);
+            $expositaire->setNumero(0);
+            $expositaire->setContact($numeroPersonnel);
+            $expositaire->setStructure($structureNom);
+            $expositaire->setEmailStructure($structureEmail);
+            $expositaire->setProduits($produit);
+            $expositaire->setDateCreation(new \DateTime());
+
+            $entityManager->persist($expositaire);
+            $entityManager->flush();
+
+            // $this->addFlash(
+            //     'success',
+            //     'Votre inscription est un success.'
+            // );
+
+            return $this->redirectToRoute('success_inscription_expositaire');
         }
 
 

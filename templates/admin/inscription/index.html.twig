@@ -35,11 +35,11 @@
 		href="{{ asset("asset/assets/css/style.css") }}" rel="stylesheet">
 
 	<!-- =======================================================
-			  * Template Name: NiceAdmin - v2.5.0
-			  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-			  * Author: BootstrapMade.com
-			  * License: https://bootstrapmade.com/license/
-			  ======================================================== -->
+					  * Template Name: NiceAdmin - v2.5.0
+					  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+					  * Author: BootstrapMade.com
+					  * License: https://bootstrapmade.com/license/
+					  ======================================================== -->
 	</head>
 
 	<body>
@@ -50,7 +50,7 @@
 				<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
 					<div class="container">
 						<div class="row justify-content-center">
-							<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+							<div class="col-lg-10 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
 								<div class="d-flex justify-content-center py-4">
 									<a href="{{ path("main_accueil") }}" class="logo d-flex align-items-center w-auto">
@@ -64,7 +64,6 @@
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="card mb-3">
-
 												<div class="card-body">
 
 													<div class="pt-4 pb-2">
@@ -80,7 +79,7 @@
 																	class="row mb-3">{# <label class="col-sm-2 col-form-label">Select</label> #}
 																</div>
 																<div class="col-12">
-																	<p class="small center mb-0">J'ai deja un compte
+																	<p class="small center mb-0">J'ai déja un compte
 																		<a href="{{ path("app_login") }}">Se connecter</a>
 																	</p>
 																</div>
@@ -91,13 +90,8 @@
 													</div>
 
 												</div>
-
-
 											</div>
-										</div>
-
-
-                    <div class="col-lg-6">
+										<div class="col-lg-6">
 											<div class="card mb-3">
 
 												<div class="card-body">
@@ -108,31 +102,80 @@
 													</div>
 													<div class="row g-3 needs-validation" novalidate>
 
-                        <form action="{{ path("inscription_exposants") }}" method="post">
-                          <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                        
-                          <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label">Submit Button</label>
-                            <div class="col-sm-10">
-                              <button type="submit" class="btn btn-primary">Submit Form</button>
-                            </div>
-                          </div>
+														<div class="container">
+															<div class="content">
+																<div class="row">
+																	<form method="post" action="{{ path("inscription") }}" >
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Nom du représentant (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="nom" class="form-control">
+																			</div>
+																		</div>
 
-                        </form><!-- End General Form Elements -->
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Prenom du représentant (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="prenom" class="form-control">
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Email du représentant (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="email" class="form-control">
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Vos numéros de telephone (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="numeroPersonnel" class="form-control">
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Nom de la struture(association, entreprise,...) (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="structureNom" class="form-control">
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Email de la structure(Association, entreprise...) (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<input type="text" name="structureEmail" class="form-control">
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<label for="inputText" class="form-label">Les produits a exposés (*obligatoire)</label>
+																			<div class="col-sm-12">
+																				<textarea class="form-control" name="produit" aria-label="With textarea"></textarea>
+																			</div>
+																		</div>
+
+																		<div class="row mb-3">
+																			<div class="col-sm-12">
+																				<input type="submit" name="inscription_expt" onclick="return confirm('Terminer votre inscription ?')" class="form-control btn btn-primary w-100" value="Inscription">
+																			</div>
+																		</div>
+
+																	</form>
+																</div>
+															</div>
+														</div>
+														<!-- End General Form Elements -->
 
 
 													</div>
 
 												</div>
-
-
 											</div>
 										</div>
+										</div>
+
+
 									</div>
 								</div>
 							</div>
@@ -172,3 +215,7 @@ Swal.fire({"icon": "success", "title": "Success", "text":"{{ message }}"}){% end
 		</body>
 	</body>
 </html>
+
+
+<div class="col-lg-6"></div>
+#}
