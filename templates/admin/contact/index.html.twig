@@ -16,14 +16,65 @@
 
 {% block body %}
     <div class="card-body">
-              <h2 class="card-title">Contacter un inscrit par email</h2>
-              <!-- Bordered Table -->
-              <div class="content">
-                <div class="card p-4">
-                    {{ form(form) }}
-              <div><a href="{{ path("admin_dashboard") }}" class="btn btn-outline-dark">Retour</a></div>
+              <h2 class="card-title">Liste des messages envoyé</h2>
+              
+               {% for contact in contacts %}
+                    
+              <section class="section profile">
+              <div class="row">
+                <div class="col-xl-8">
+
+                  <div class="card">
+                    <div class="card-body pt-3">
+                      <!-- Bordered Tabs -->
+                      <ul class="nav nav-tabs nav-tabs-bordered">
+                        <li class="nav-item">
+                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Message</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Nom prénom</div>
+                            <div class="col-lg-9 col-md-8">{{ contact.nomPrenom }}</div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Email</div>
+                            <div class="col-lg-9 col-md-8">{{ contact.email }}</div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Numéro</div>
+                            <div class="col-lg-9 col-md-8">{{ contact.numero }}</div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Sujet</div>
+                            <div class="col-lg-9 col-md-8">{{ contact.sujet }}</div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Message</div>
+                            <div class="col-lg-9 col-md-8">{{ contact.message }}</div>
+                          </div>
+
+                        </div>
+
+
+                      </div><!-- End Bordered Tabs -->
+
+                    </div>
+                  </div>
+
                 </div>
               </div>
+            </section>
+
+                  {% endfor %}
+              
     </div>
 
 {% endblock %}

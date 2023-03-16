@@ -1,23 +1,27 @@
 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{{ path("main_accueil") }}" method="post" class="form-control">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Votre nom prénom</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
+                  <input type="text" name="nom" class="form-control" id="name" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="name">Votre email</label>
                   <input type="email" class="form-control" name="email" id="email" required>
                 </div>
-              </div>
+              </div><br>
               <div class="form-group">
                 <label for="name">Sujet</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
+                <input type="text" class="form-control" name="sujet" id="subject" required>
+              </div><br>
+              <div class="form-group">
+                <label for="name">Votre numéro de téléphone</label>
+                <input type="number" class="form-control" name="numero" id="subject" required>
+              </div><br>
               <div class="form-group">
                 <label for="name">Ici votre message</label>
                 <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="text-center"><button type="submit">Envoyez mon message</button></div>
+              </div><br>
+              <div class="text-center"><input type="submit" name="contact" class="form-control btn btn-primary w-100" value="Inscription"></div>
             </form>
           </div>
