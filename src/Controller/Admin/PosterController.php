@@ -29,14 +29,6 @@ class PosterController extends AbstractController
             $type_fichier = $request->get("file_type");
 
             $posters = $userRepository->findAll();
-            foreach($posters as $poster)
-            {
-                $resumer = $poster->getResumer();
-                if($resumer != "rien")
-                {
-                    $posterrs[] = $poster;
-                }
-            }
 
             $fichier = new Spreadsheet();
 
@@ -48,7 +40,7 @@ class PosterController extends AbstractController
 
             $count = 2;
 
-            foreach ($posterrs as $poster) {
+            foreach ($posters as $poster) {
                     $active_feuille->setCellValue("A" . $count, $poster->getNom());
                     $active_feuille->setCellValue("B" . $count, $poster->getPrenom());
                     $active_feuille->setCellValue("C" . $count, $poster->getContact());

@@ -16,7 +16,7 @@ class dashboardController extends AbstractController
     {
         $users = $userRepository->findAll();
         $users2 = $userRepository->findAll();
-        $usersTri = $userRepository->findBy([], ["id" => "DESC"], 5);
+        $usersTri = $userRepository->findAll();
         $expositaires = $expositaireRepository->getEtat();
         $totalExpositaires = $expositaires["etat"][0];
         $totalUsers = $expositaires["etat1"][0];
