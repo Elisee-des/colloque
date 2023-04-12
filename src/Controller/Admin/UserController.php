@@ -20,13 +20,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 #[Route('/admin', name: 'admin_')]
 class UserController extends AbstractController
 {
-    private $fichierATelecharger;
-
-    public function __construct(FileDownloader $fichierATelecharger)
-    {
-        $this->fichierATelecharger = $fichierATelecharger;
-        
-    }
 
     #[Route('/liste/inscriptions', name: 'liste_inscription')]
     public function index(UserRepository $userRepository): Response
